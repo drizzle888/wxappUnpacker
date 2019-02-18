@@ -1,0 +1,8 @@
+<view>
+    <file-item capture-bind:tap="captureTapFileItem" detail="{{file.detail}}" deviceid="{{file.deviceid}}" ficon="{{file.ficon||ficon}}" fid="{{file.id}}" fname="{{file.fname}}" fsize="{{file.fsize}}" fsrc="{{file.fsrc}}" ftype="{{file.ftype}}" groupid="{{file.groupid}}" highlightCreator="{{file.highlight&&file.highlight.creator_name}}" highlightFname="{{file.highlight&&(file.highlight.file_name||file.highlight.group_name)}}" highlightSharer="{{file.highlight&&file.highlight.sharer_name}}" index="{{index}}" isbindTap="{{isbindTap}}" mtime="{{file.mtime}}" mtime_recent="{{file.mtime_recent}}" parentid="{{file.parentid}}" path="{{file.path}}" recent_members="{{file.recent_members}}" selectedIndexs="{{selectedIndexs}}" showFrom="{{showFrom}}" showOperate="{{showOperate}}" showRecentTime="{{showRecentTime}}" showSelect="{{showSelect}}" showTeamAvatar="{{showTeamAvatar}}" sid="{{file.sid}}" type="{{type}}" userRole="{{file.user_role}}" wpsCourseId="{{file.store===19?file.storeid:''}}" wx:for="{{files}}" wx:for-item="file" wx:key="{{ file.id }}"></file-item>
+    <view wx:if="{{showPlaceHolder&&showPlaceHolderDelayOut}}" wx:for="{{[1,2,3,4,5,6]}}" wx:key="{{ item.index }}">
+        <file-place-holder></file-place-holder>
+    </view>
+    <slot wx:if="{{showSlot}}"></slot>
+    <view class="loading">{{loadMoreText}}</view>
+</view>

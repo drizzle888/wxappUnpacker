@@ -1,0 +1,60 @@
+.clz_bind_phone_guide {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 88rpx;
+}
+
+.clz_bind_phone_guide_bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 34rpx;
+    right: 24rpx;
+    padding: 0;
+    border: 0;
+    background: rgba(254,247,211,1);
+}
+
+.clz_close_bind_phone_guide {
+    z-index: 1;
+    position: absolute;
+    left: 50rpx;
+    width: 40rpx;
+    height: 40rpx;
+    background: transparent;
+}
+
+.clz_bind_phone_guide_title {
+    z-index: 1;
+    flex: 1;
+    margin-left: 106rpx;
+    height: 88rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: rgba(249,194,82,1);
+    line-height: 88rpx;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.clz_bind_phone_guide_btn {
+    z-index: 1;
+    margin-right: 50rpx;
+    width: 96rpx;
+    height: 52rpx;
+    background: rgba(249,194,82,1);
+    border-radius: 4rpx;
+    font-size: 24rpx;
+    font-family: SourceHanSansCN-Normal;
+    font-weight: 400;
+    color: rgba(255,255,255,1);
+    line-height: 52rpx;
+    text-align: center;
+    flex-shrink: 1;
+    flex-grow: 0;
+    pointer-events: none;
+    padding: 0;
+}

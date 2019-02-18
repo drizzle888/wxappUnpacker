@@ -1,0 +1,7 @@
+{
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "file-list": "../../components/FileList/index",
+        "float-btn": "../../components/FloatBtn/index"
+    }
+}

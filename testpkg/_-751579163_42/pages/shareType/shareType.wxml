@@ -1,0 +1,34 @@
+<view class="title-item" wx:if="{{loaded}}">
+    <file-icon class="title-icon" size="super" type="{{icon(fname,ftype)}}"></file-icon>
+    <text class="title-name">{{noExtName(fname,ftype)}}</text>
+</view>
+<block wx:if="{{loaded&&!permissionDenied}}">
+    <view class="setting">
+        <view>
+            <text class="setting-text" wx:if="{{linkOpen}}">获得文档链接仅可查看</text>
+            <text class="setting-text" wx:else>文档分享链接已关闭</text>
+            <text bindtap="tapSetting" class="setting-btn" wx:if="{{linkOpen&&canSet}}">设置</text>
+        </view>
+    </view>
+    <view class="sendBtnBg" wx:if="{{linkOpen}}">
+        <button bindtap="tapSend" class="sendBtn" hoverClass="globalBottomSubmitBtnHover" openType="share">
+            <text>发给微信好友</text>
+        </button>
+        <button bindtap="tapCopy" class="copyBtn" hoverClass="copyBtnHover">
+            <text>复制链接</text>
+        </button>
+        <view class="sendTip">
+            <text>发送至电脑、QQ等，可复制链接发送</text>
+        </view>
+    </view>
+    <view class="sendBtnBg" wx:if="{{!linkOpen&&canOpen}}">
+        <button bindtap="tapOpenLink" class="sendBtn bigBottomMargin" hoverClass="globalBottomSubmitBtnHover">
+            <text>立即开启</text>
+        </button>
+    </view>
+</block>
+<view class="no-permission" wx:if="{{loaded&&permissionDenied}}">
+    <text class="setting-text">没有操作权限</text>
+</view>
+<wxs module="icon" src="../../components/icon.wxs" />
+<wxs module="noExtName" src="../../components/fname.wxs" />

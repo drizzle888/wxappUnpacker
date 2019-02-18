@@ -1,0 +1,18 @@
+<view class="wrapper">
+    <image class="dinner" src="https://qn.cache.wpscdn.cn/wxminiprogram/application/annual-dinner.png"></image>
+    <image class="time" src="https://qn.cache.wpscdn.cn/wxminiprogram/application/annual-time.png"></image>
+    <view class="item-list">
+        <button bindtap="tapCheckin" class="item">
+            <image class="icon" mode="aspectFill" src="../../../libs/img/annual-sign.png"></image>
+            <view class="text-small">年会指南</view>
+        </button>
+        <button bindtap="tapPrize" class="item">
+            <image class="icon" mode="aspectFill" src="../../../libs/img/annual-prize.png"></image>
+            <view class="text-small">年会座位</view>
+        </button>
+    </view>
+    <button class="item-share" openType="share">
+        <text class="text">分享给同事</text>
+    </button>
+    <view class="bottom">WPS云-企业年会</view>
+</view>

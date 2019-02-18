@@ -1,0 +1,108 @@
+.title-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 220rpx 90rpx 24rpx 90rpx;
+}
+
+.title-icon {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.title-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 32rpx;
+    color: #353535;
+    text-align: center;
+    margin-top: 48rpx;
+    line-height: 45rpx;
+}
+
+.setting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.setting-text {
+    font-size: 28rpx;
+    color: #979797;
+    text-align: center;
+}
+
+.setting-btn {
+    margin-left: 20rpx;
+    font-size: 28rpx;
+    color: #2E68F8;
+    text-align: center;
+}
+
+.sendBtnBg {
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%,-100%);
+}
+
+.sendBtn {
+    margin: 30rpx 40rpx;
+    width: 670rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    color: #fff;
+    background-color: #2E68F8;
+    border-radius: 8rpx;
+}
+
+.bigBottomMargin {
+    margin-bottom: 240rpx;
+}
+
+.copyBtn {
+    margin: 30rpx 40rpx;
+    width: 670rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    color: #353535;
+    border: 3rpx solid #E2E2E2;
+    background-color: #FAFAFA;
+    border-radius: 8rpx;
+}
+
+.copyBtnHover {
+    background-color: #F0F0F0;
+}
+
+.sendTip {
+    height: 88rpx;
+    text-align: center;
+    font-size: 28rpx;
+    color: #979797;
+    letter-spacing: -0.68px;
+}
+
+.error-text {
+    font-size: 32rpx;
+    color: #979797;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.no-permission {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24rpx;
+}
+
+@import "../../app.wxss";

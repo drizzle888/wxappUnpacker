@@ -1,0 +1,26 @@
+<view class="dialog">
+    <view bindtap="tapMask" class="mask"></view>
+    <view class="main">
+        <view class="title">发送给：</view>
+        <view class="body">
+            <view class="target">
+                <image class="target-logo" mode="aspectFit" src="../../libs/img/send2pc-icon.png"></image>
+                <text>WPS电脑版</text>
+            </view>
+            <view class="filename">
+                <view class="filename-box">[文件] {{fname}}</view>
+            </view>
+        </view>
+        <view class="footer">
+            <view class="btn-item">
+                <button bindtap="tapCancel" class="cancel">取 消</button>
+            </view>
+            <view class="btn-item">
+                <button bindtap="tapConfirm" class="confirm" loading="{{sending}}">发 送</button>
+            </view>
+        </view>
+        <view class="howto">
+            <text bindtap="tapHowto">如何在电脑接收？</text>
+        </view>
+    </view>
+</view>

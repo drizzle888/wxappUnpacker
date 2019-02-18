@@ -1,0 +1,11 @@
+{
+    "usingComponents": {
+        "send-client-dialog": "../../components/SendClient/index",
+        "file-icon": "../../components/FileIcon/index",
+        "hair-line": "../../components/HairLine/index",
+        "login-dialog": "../../components/LoginModel/index",
+        "add-mini-program-guide": "../../components/AddMiniProgramGuide/index",
+        "fake-home": "../../components/FakeHome/index"
+    },
+    "navigationBarBackgroundColor": "#f5f5f5"
+}

@@ -1,0 +1,10 @@
+<view>
+    <search-button id="searchbutton"></search-button>
+    <file-item ficon="share-folder" fname="协作文档" ftype="teamlist" nobottomline="{{true}}" showOperate="{{false}}" type="teamlist"></file-item>
+    <view class="seperate"></view>
+    <file-item ficon="/libs/img/devicelist.png" fname="我的设备" showOperate="{{false}}" type="devicelist"></file-item>
+    <file-list bind:loadStatus="onloadStatusChange" class="myteams" id="filelist" showOperate="{{true}}" type="all">
+        <view class="empty">这里暂无文件</view>
+    </file-list>
+    <float-btn class="float-btn" groupid="{{groupid}}" parentid="{{parentid}}" wx:if="{{groupid}}"></float-btn>
+</view>

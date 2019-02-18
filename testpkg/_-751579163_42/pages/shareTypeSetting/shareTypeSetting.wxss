@@ -1,0 +1,45 @@
+.item {
+    height: 136rpx;
+    padding-left: 36rpx;
+    padding-right: 36rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.main-text {
+    font-size: 32rpx;
+    color: rgba(53,53,53,1);
+    padding: 6rpx 0;
+}
+
+.main-text-gray {
+    font-size: 3r2px;
+    color: rgba(151,151,151,1);
+}
+
+.sub-text {
+    font-size: 24rpx;
+    color: rgba(151,151,151,1);
+}
+
+.warning-text {
+    font-size: 32rpx;
+    color: #E97663;
+}
+
+.line {
+    height: 1rpx;
+    background-color: gainsboro;
+    margin-left: 40rpx;
+}
+
+.left {
+    flex-grow: 2;
+}
+
+.arrow {
+    width: 36rpx;
+    height: 36rpx;
+    margin-left: 16rpx;
+}

@@ -1,0 +1,12 @@
+<view class="wrapper">
+    <image class="icon" mode="aspectFit" src="{{isSuccess?'../../libs/img/big-ok.png':'../../libs/img/big-fail.png'}}"></image>
+    <view class="title">{{isSuccess?'已提交内容':'提交失败'}}</view>
+    <view class="tip" wx:if="{{isSuccess}}">
+    「<view class="tip-name">{{fname}}</view>」
+  </view>
+    <view class="tip" wx:else>{{msg}}</view>
+    <view class="bottom">
+        <button bindtap="tapHome" class="btn" hoverClass="btnHover">返回首页</button>
+        <button bindtap="tapRedo" class="returnBtn" hoverClass="returnBtnHover">{{isSuccess?'继续提交':'重新提交'}}</button>
+    </view>
+</view>

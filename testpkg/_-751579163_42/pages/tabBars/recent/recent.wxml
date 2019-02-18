@@ -1,0 +1,15 @@
+<view>
+    <add-mini-program-guide from="recent"></add-mini-program-guide>
+    <search-button id="searchbutton"></search-button>
+    <account-bind-phone-bar id="accountbindphonebar"></account-bind-phone-bar>
+    <file-item ficon="teamlist" fname="协作" ftype="teamlist" nobottomline="{{!showWechatFile}}" showOperate="{{false}}" type="teamlist" wx:if="{{!isCompanyAccount}}"></file-item>
+    <file-item bind:filetapevent="tapWechatFile" ficon="wechat" fname="微信文件" isbindTap="{{true}}" nobottomline="{{true}}" showOperate="{{false}}" wx:if="{{showWechatFile}}"></file-item>
+    <view class="seperate" wx:if="{{!isCompanyAccount}}"></view>
+    <file-list bind:loadStatus="onloadStatusChange" id="filelist" showOperate="{{true}}" type="recent">
+        <view class="empty">
+            <view class="no-record">暂无打开记录</view>
+            <view bindtap="tapOpenDocs" class="open-doc">打开文档</view>
+        </view>
+    </file-list>
+    <float-btn class="float-btn" groupid="0" parentid="0"></float-btn>
+</view>

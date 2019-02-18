@@ -1,0 +1,18 @@
+module.exports = (function(fname, ftype) {
+    if (typeof fname !== 'string') {
+        return (fname)
+    };
+    if (ftype !== 'file' && ftype !== 'sharefile' && ftype !== 'wpscourselink') {
+        return (fname)
+    };
+    var notExtName = '';
+    var nameArr = fname.split('.');
+    var length = nameArr.length;
+    if (length > 1) {
+        var ext = '.' + nameArr[((nt_0 = (length - 1), null == nt_0 ? undefined : 'number' === typeof nt_0 ? nt_0 : "" + nt_0))];
+        notExtName = fname.substring(0, fname.length - ext.length)
+    } else {
+        notExtName = fname
+    };
+    return (notExtName)
+});

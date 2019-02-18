@@ -1,0 +1,7 @@
+{
+    "enablePullDownRefresh": false,
+    "usingComponents": {
+        "file-icon": "../../../components/FileIcon/index",
+        "circle-progress": "../../../components/CircleProgress/index"
+    }
+}

@@ -1,0 +1,7 @@
+<view class="root">
+    <form bindsubmit="submitRename" class="rename-form">
+        <input bindblur="checkInput" bindinput="checkInput" class="rename-input" focus="{{focus}}" name="fname" selectionEnd="{{selectEnd}}" selectionStart="{{selectStart}}" value="{{fname}}"></input>
+        <text class="errTip" wx:if="{{errTip.length}}">{{errTip}}</text>
+        <button disabled="{{disabled}}" formType="submit" hoverClass="globalBottomSubmitBtnHover" loading="{{loading}}">确定</button>
+    </form>
+</view>

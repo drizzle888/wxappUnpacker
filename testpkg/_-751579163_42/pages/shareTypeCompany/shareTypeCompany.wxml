@@ -1,0 +1,54 @@
+<view class="title-item" wx:if="{{loaded}}">
+    <file-icon class="title-icon" size="large" type="{{icon(fname,ftype)}}"></file-icon>
+    <text class="title-name">{{noExtName(fname,ftype)}}</text>
+</view>
+<view class="header" wx:if="{{loaded}}"></view>
+<block wx:if="{{!permissionDenied&&loaded}}">
+    <button bindtap="tapRead" class="opt-btn" wx:if="{{showRead}}">
+        <view class="opt-item">
+            <text class="opt-text">{{account}}</text>
+            <text class="opt-text opt-text-padding">可查看</text>
+            <image class="opt-checked" mode="aspectFit" src="../../libs/img/checked.png" wx:if="{{checkedRead==1}}"></image>
+            <button class="opt-loading" loading="{{true}}" wx:if="{{checkedRead==2}}"></button>
+        </view>
+        <view class="line"></view>
+    </button>
+    <button bindtap="tapEdit" class="opt-btn" wx:if="{{showEdit}}">
+        <view class="opt-item">
+            <text class="opt-text">{{account}}</text>
+            <text class="opt-text opt-text-padding">可编辑</text>
+            <image class="opt-checked" mode="aspectFit" src="../../libs/img/checked.png" wx:if="{{checkedEdit==1}}"></image>
+            <button class="opt-loading" loading="{{true}}" wx:if="{{checkedEdit==2}}"></button>
+        </view>
+        <view class="line"></view>
+    </button>
+    <button bindtap="tapClose" class="opt-btn" wx:if="{{showClose}}">
+        <view class="opt-item">
+            <text class="opt-text">{{closeText}}</text>
+            <image class="opt-checked" mode="aspectFit" src="../../libs/img/checked.png" wx:if="{{checkedClose==1}}"></image>
+            <button class="opt-loading" loading="{{true}}" wx:if="{{checkedClose==2}}"></button>
+        </view>
+        <view class="line"></view>
+    </button>
+    <view class="sendBtnBg">
+        <button bindtap="tapSend" class="sendBtn" disabled="{{disabled}}" hoverClass="globalBottomSubmitBtnHover" openType="share" wx:if="{{!onlyMe}}">
+            <text>发给微信好友</text>
+        </button>
+        <button bindtap="tapCopy" class="copyBtn" disabled="{{disabled}}" hoverClass="copyBtnHover" wx:if="{{!onlyMe}}">
+            <text>复制链接</text>
+        </button>
+        <button bindtap="tapConfirm" class="sendBtn" disabled="{{disabled}}" hoverClass="globalBottomSubmitBtnHover" wx:else>
+            <text>确定</text>
+        </button>
+        <view class="sendTip" wx:if="{{!onlyMe}}">
+            <text>发送至电脑、QQ等，可复制链接发送</text>
+        </view>
+    </view>
+</block>
+<block wx:else>
+    <view class="error-text" wx:if="{{loaded}}">
+    没有操作权限
+  </view>
+</block>
+<wxs module="icon" src="../../components/icon.wxs" />
+<wxs module="noExtName" src="../../components/fname.wxs" />

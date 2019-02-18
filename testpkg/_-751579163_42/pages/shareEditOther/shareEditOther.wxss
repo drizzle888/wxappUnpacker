@@ -1,0 +1,144 @@
+.copy-link {
+    height: 120rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 36rpx;
+    padding-right: 36rpx;
+}
+
+.copy-text {
+    flex: 2;
+}
+
+.arrow {
+    width: 36rpx;
+    height: 36rpx;
+}
+
+.main-text {
+    font-size: 32rpx;
+    color: rgba(53,53,53,1);
+}
+
+.line {
+    margin-left: 36rpx;
+    height: 1rpx;
+    background-color: #f5f5f5;
+}
+
+.header {
+    height: 60rpx;
+    line-height: 60rpx;
+    background-color: #f5f5f5;
+    vertical-align: middle;
+}
+
+.header-text {
+    font-size: 24rpx;
+    color: #9b9b9b;
+    margin-left: 36rpx;
+}
+
+.contact-item {
+    height: 120rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.avatar {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    margin: 0 50rpx 0 36rpx;
+    background-color: gainsboro;
+}
+
+.name {
+    font-size: 32rpx;
+    color: #353535;
+    flex: 2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-wrap: normal;
+}
+
+checkbox .wx-checkbox-input {
+    border-radius: 50%;
+    border-width: 1rpx;
+    width: 38rpx;
+    height: 38rpx;
+    margin: 0 36rpx 0 20rpx;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+    border-radius: 50%;
+    border-width: 1rpx;
+    background: #2e68f8;
+    border-color: #2e68f8;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+    border-radius: 50%;
+    border-width: 1rpx;
+    width: 38rpx;
+    height: 38rpx;
+    line-height: 38rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: #fff;
+    background: transparent;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.checkbox-disabled .wx-checkbox-input.wx-checkbox-input-checked {
+    border-radius: 50%;
+    border-width: 1rpx;
+    background: rgb(171,195,252);
+    border-color: rgb(171,195,252);
+}
+
+.checkbox-disabled .wx-checkbox-input.wx-checkbox-input-checked::before {
+    border-radius: 50%;
+    border-width: 1rpx;
+    width: 38rpx;
+    height: 38rpx;
+    line-height: 38rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: rgba(255,255,255,0.40);
+    background: transparent;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.bottom-align {
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%,-100%);
+}
+
+.share-btn {
+    margin: 30rpx 40rpx;
+    width: 670rpx;
+    height: 92rpx;
+    line-height: 92rpx;
+    color: #fff;
+    background-color: #2e68f8;
+    border-radius: 8rpx;
+}
+
+.share-btn[disabled]:not([type]) {
+    color: #FFFFFF;
+    background-color: rgba(46,104,248,0.40);
+}
+
+.page {
+    padding-bottom: 160rpx;
+}
+
+@import "../../app.wxss";

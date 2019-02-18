@@ -1,0 +1,4 @@
+<view bindtap="tap" class="floatBtn {{active?'active':''}}">
+    <image class="createImgBg" src="../../libs/img/create_bg.png"></image>
+    <image class="createImg" src="../../libs/img/create.png"></image>
+</view>

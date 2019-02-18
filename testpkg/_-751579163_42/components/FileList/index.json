@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "file-item": "../FileItem/index",
+        "file-place-holder": "../FilePlaceHolder/index"
+    }
+}

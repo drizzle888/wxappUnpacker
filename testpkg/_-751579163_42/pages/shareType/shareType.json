@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "file-icon": "../../../components/FileIcon/index"
+    }
+}

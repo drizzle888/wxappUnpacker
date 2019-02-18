@@ -1,0 +1,29 @@
+<view hidden="{{delayShow}}">
+    <block wx:if="{{from==='recent'||from==='share'}}">
+        <view bindtap="tapNewTeam" class="item">
+            <image class="item_icon" src="../../libs/img/create_team.svg"></image>
+            <text class="item_text">新建协作</text>
+        </view>
+        <view class="new_team_divider"></view>
+    </block>
+    <block wx:if="{{showShareGroup&&(from==='recent'||from==='share')}}">
+        <view bindtap="tapShareGroup" class="item">
+            <image class="item_icon" src="../../libs/img/share_group.svg"></image>
+            <text class="item_text">最近的协作</text>
+        </view>
+        <hair-line class="line"></hair-line>
+    </block>
+    <file-list bind:loadStatus="onloadStatusChange" id="grouplist" showOperate="{{true}}" showTeamAvatar="{{from==='recent'}}" type="groupList">
+        <view class="empty" wx:if="{{(from==='recent'||from==='share')&&!showShareGroup}}">
+            <image class="empty_icon" src="https://qn.cache.wpscdn.cn/wxminiprogram/teams/team_empty.png"></image>
+            <text class="empty_title">群组协作</text>
+            <text class="empty_desc">轻松与多人共享文档资料</text>
+            <button bindtap="tapNewTeamByEmpty" hoverClass="button_hover">立即新建协作</button>
+        </view>
+        <view class="empty" wx:if="{{from==='myfile'}}">
+            <image class="empty_icon" src="https://qn.cache.wpscdn.cn/wxminiprogram/teams/team_file_empty.png"></image>
+            <text class="empty_title">协作文档</text>
+            <text class="empty_desc">新建或加入协作后，可在这查看共享文档</text>
+        </view>
+    </file-list>
+</view>

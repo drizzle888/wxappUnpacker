@@ -1,0 +1,12 @@
+<view class="top">
+    <view class="contain">
+        <view class="left">
+            <view class="head"></view>
+        </view>
+        <view class="right">
+            <view class="title"></view>
+            <view class="content"></view>
+        </view>
+    </view>
+    <hair-line class="line"></hair-line>
+</view>

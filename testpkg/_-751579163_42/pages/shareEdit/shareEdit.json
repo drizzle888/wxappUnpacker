@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "邀请他人一起写",
+    "usingComponents": {
+        "file-icon": "../../../components/FileIcon/index"
+    }
+}

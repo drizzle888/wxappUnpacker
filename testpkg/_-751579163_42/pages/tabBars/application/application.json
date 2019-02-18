@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "应用",
+    "usingComponents": {
+        "app-item": "../../../components/ApplicationItem/index"
+    }
+}

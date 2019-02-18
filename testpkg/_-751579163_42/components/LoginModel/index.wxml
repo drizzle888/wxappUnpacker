@@ -1,0 +1,12 @@
+<view catchtouchmove="true" class="dialog">
+    <view bindtap="tapMask" class="mask"></view>
+    <view class="main">
+        <view bindtap="tapCancel" class="ignore">暂不</view>
+        <image class="auth-image" src="https://qn.cache.wpscdn.cn/wxminiprogram/share/share_login.png"></image>
+        <view class="auth-tip">登录保存文件，随时查看不丢失</view>
+        <button bindtap="tapComfirm" class="auth-button">
+            <image class="auth-wechat-icon" src="../../libs/img/wechat.png"></image>
+            <text class="auth-button-text">微信登录</text>
+        </button>
+    </view>
+</view>

@@ -1,0 +1,199 @@
+.root {
+    position: relative;
+    height: 100%;
+}
+
+.title_container {
+    height: 320rpx;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: #fff;
+}
+
+.title_bar {
+    width: 100%;
+    display: flex;
+}
+
+.title {
+    flex: 1;
+    text-align: center;
+    height: 88rpx;
+    line-height: 88rpx;
+    color: rgba(151,151,151,1);
+}
+
+.title_line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.title_selected {
+    flex: 1;
+    text-align: center;
+    height: 88rpx;
+    line-height: 88rpx;
+    color: rgba(46,104,248,1);
+}
+
+.title_index {
+    width: 120rpx;
+    height: 5rpx;
+    background: #2E68F8;
+    position: absolute;
+    left: 25%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
+.new_team_menu {
+    width: 100%;
+    height: 120rpx;
+    display: flex;
+    align-items: center;
+    background: #fff;
+}
+
+.new_team_menu_line {
+    position: absolute;
+    left: 44rpx;
+    right: 0;
+}
+
+.new_team_menu_icon {
+    width: 72rpx;
+    height: 72rpx;
+    margin-left: 36rpx;
+}
+
+.new_team_menu_center {
+    flex: auto;
+}
+
+.new_team_menu_text {
+    font-size: 32rpx;
+    color: #353535;
+    margin-left: 24rpx;
+}
+
+.new_team_menu_blue {
+    font-size: 32rpx;
+    color: #2E68F8;
+    margin-left: 20rpx;
+}
+
+.new_team_menu_close {
+    width: 36rpx;
+    height: 36rpx;
+    margin-right: 36rpx;
+}
+
+.add_member_menu {
+    margin-top: 320rpx;
+    width: 100%;
+    height: 136rpx;
+    display: flex;
+    align-items: center;
+}
+
+.add_member_divider {
+    width: 100%;
+    height: 40rpx;
+    background: #F5F5F5;
+}
+
+.center {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.empty {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 624rpx;
+    font-size: 30rpx;
+    color: #979797;
+}
+
+.float-btn {
+    position: fixed;
+    z-index: 1;
+    right: 36rpx;
+    bottom: 36rpx;
+}
+
+.clz-title-team-header-container {
+    margin-top: 30rpx;
+    display: flex;
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+    align-items: center;
+    justify-content: center;
+}
+
+.clz-title-team-header {
+    color: #353535;
+    font-size: 40rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    font-family: 'PingFangSC';
+    font-weight: 'bold';
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0;
+    flex: auto;
+    flex-grow: 0;
+}
+
+.clz-team-name-edit-icon {
+    width: 36rpx;
+    height: 36rpx;
+    flex: none;
+    margin-left: 20rpx;
+}
+
+.clz-btn-share-team-container {
+    display: flex;
+    justify-content: center;
+}
+
+.clz-btn-share-team {
+    margin-top: 30rpx;
+    margin-bottom: 30rpx;
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+    display: block;
+    text-align: center;
+    height: 72rpx;
+    line-height: 72rpx;
+    color: rgba(255,255,255,1);
+    font-size: 32rpx;
+    font-family: PingFangTC-Regular;
+    font-weight: 400;
+    background-color: #2E68F8;
+    border-radius: 8rpx;
+    box-sizing: border-box;
+}
+
+.clz-btn-share-team-hover {
+    background-color: #295DDE;
+}
+
+.clz_red_point {
+    position: absolute;
+    background: red;
+    border-radius: 50%;
+    right: 36rpx;
+    width: 16rpx;
+    height: 16rpx;
+}

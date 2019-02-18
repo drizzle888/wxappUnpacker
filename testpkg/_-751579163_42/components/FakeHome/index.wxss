@@ -1,0 +1,52 @@
+.float-btn {
+    position: fixed;
+    z-index: 1;
+    right: 36rpx;
+    bottom: 132rpx;
+}
+
+.seperate {
+    width: 100%;
+    height: 40rpx;
+    background: #F5F5F5;
+}
+
+.fake-home-tabbars {
+    position: absolute;
+    height: 96rpx;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.fake-home-tabbars-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fake-home-tabbars-icon {
+    height: 48rpx;
+    width: 48rpx;
+}
+
+.fake-home-tabbars-text {
+    color: rgba(46,104,248,1);
+    font-size: 20rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+}
+
+.disabled {
+    color: rgba(158,165,183,1);
+}
+
+.fake-home-tabbars-topline {
+    height: 1rpx;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: lightgray;
+}

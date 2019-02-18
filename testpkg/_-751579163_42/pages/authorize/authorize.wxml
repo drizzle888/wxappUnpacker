@@ -1,0 +1,4 @@
+<view class="wrapper">
+    <image class="top_icon" src="https://qn.cache.wpscdn.cn/wxminiprogram/guidefeedback/top_icon_2.png"></image>
+    <view class="top_text">正在登录...</view>
+</view>

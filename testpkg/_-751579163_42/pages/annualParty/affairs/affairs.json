@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "hair-line": "../../../components/HairLine/index"
+    }
+}

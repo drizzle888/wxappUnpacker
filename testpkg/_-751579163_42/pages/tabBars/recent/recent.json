@@ -1,0 +1,11 @@
+{
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "search-button": "../../../components/SearchButton/index",
+        "file-list": "../../../components/FileList/index",
+        "float-btn": "../../../components/FloatBtn/index",
+        "file-item": "../../../components/FileItem/index",
+        "add-mini-program-guide": "../../../components/AddMiniProgramGuide/index",
+        "account-bind-phone-bar": "../../../components/accountbindphonebar/index"
+    }
+}

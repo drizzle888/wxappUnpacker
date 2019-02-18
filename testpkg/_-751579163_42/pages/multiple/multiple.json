@@ -1,0 +1,8 @@
+{
+    "enablePullDownRefresh": false,
+    "usingComponents": {
+        "file-icon": "../../components/FileIcon/index",
+        "hair-line": "../../components/HairLine/index",
+        "file-item": "/components/FileItem/index"
+    }
+}

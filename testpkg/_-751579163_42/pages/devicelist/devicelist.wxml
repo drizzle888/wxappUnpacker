@@ -1,0 +1,11 @@
+<file-list bind:loadStatus="onloadStatusChange" id="deviceList" showOperate="{{false}}">
+    <view class="empty" wx:if="{{deviceComplete}}">暂无设备文档</view>
+</file-list>
+<view class="clz_device_not_complete" wx:if="{{!loading&&isLoadResultAvailable&&!deviceComplete}}">
+    <image class="classify_icon" src="https://qn.cache.wpscdn.cn/wxminiprogram/device/device_file_classify.png"></image>
+    <view class="classify-title">正在对文档进行设备分类</view>
+    <view class="classify-wait-refresh-container">
+        <view class="classify-wait-msg">请稍等，</view>
+        <view bindtap="tapRefresh" class="classify-wait-msg clz_refresh">立即刷新</view>
+    </view>
+</view>

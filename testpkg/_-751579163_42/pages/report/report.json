@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "hair-line": "../../components/HairLine/index"
+    },
+    "navigationBarTitleText": "举报文件"
+}

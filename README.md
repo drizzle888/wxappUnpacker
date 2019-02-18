@@ -20,11 +20,6 @@ Android 手机最近使用过的微信小程序所对应的 wxapkg 包文件都�
 其中`{User}` 为当前用户的用户名，类似于 `2bc**************b65`。
 
 ## 用法
-- 打开 de_miniapp.sh 文件，配置当前wxappUnpacker项目的路径
-
-```bash
-WXAPPUNPACKER_PATH=/shared/my_git/python/MyWxappUnpacker
-```
 
 - 安装npm和node
 
@@ -56,3 +51,10 @@ WXAPPUNPACKER_PATH=/shared/my_git/python/MyWxappUnpacker
 ./de_miniapp.sh
 ```
 
+## 举例
+
+```bash
+./de_miniapp.sh -d ./testpkg/_-751579163_42.wxapkg
+```
+
+![解包后的目录文件](testpkg/testdir.png)

@@ -1,0 +1,104 @@
+.dialog {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 10;
+}
+
+.main {
+    position: absolute;
+    width: 560rpx;
+    height: 667rpx;
+    background: rgba(255,255,255,1);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 11;
+    border-radius: 8rpx;
+    text-align: center;
+    overflow: hidden;
+}
+
+.ignore {
+    position: absolute;
+    color: rgba(136,136,136,1);
+    font-size: 30rpx;
+    right: 48rpx;
+    top: 35rpx;
+}
+
+.auth-image {
+    margin-top: 93rpx;
+    margin-bottom: 20rpx;
+    width: 300rpx;
+    height: 300rpx;
+    text-align: center;
+}
+
+.auth-tip {
+    font-size: 30rpx;
+    color: #353535;
+    text-align: center;
+}
+
+.auth-button {
+    font-size: 36rpx;
+    color: #FFFFFF;
+    text-align: center;
+    background: #49C75B;
+    width: 464rpx;
+    height: 92rpx;
+    border-radius: 10rpx;
+    margin-top: 48rpx;
+    margin-bottom: 72rpx;
+}
+
+.auth-wechat-icon {
+    vertical-align: top;
+    margin-top: 24rpx;
+    width: 44rpx;
+    height: 44rpx;
+    margin-right: 20rpx;
+}
+
+.full-main {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    background: rgba(255,255,255,1);
+    text-align: center;
+    overflow: hidden;
+}
+
+.close-btn {
+    position: absolute;
+    color: rgba(136,136,136,1);
+    font-size: 30rpx;
+    right: 48rpx;
+    top: 35rpx;
+}
+
+.close-img {
+    width: 36rpx;
+    height: 36rpx;
+}
+
+.desc-image {
+    margin-top: 150rpx;
+    margin-bottom: 39rpx;
+    width: 360rpx;
+    height: 622rpx;
+}

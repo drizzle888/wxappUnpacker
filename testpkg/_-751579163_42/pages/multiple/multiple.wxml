@@ -1,0 +1,44 @@
+<view>
+    <scroll-view bindscrolltolower="loadMore" enableBackToTop="true" scrollIntoView="{{toView}}" scrollY="true">
+        <view bindtap="tapMyDevice" class="file_item" style="opacity:0.5;" wx:if="{{from=='teams'}}">
+            <file-icon size="large" type="/libs/img/devicelist.png" typeIsSrc="{{true}}"></file-icon>
+            <view class="file_item_center">
+                <text class="file_item_name max-2-lines">我的设备</text>
+            </view>
+            <view class="file_item_right">
+                <image class="selected_icon" src="/libs/img/round_unchecked.png"></image>
+            </view>
+        </view>
+        <block wx:for="{{files}}" wx:for-item="file" wx:key="{{ file.id }}">
+            <view bindtap="tapFileItem" class="file_item" data-index="{{index}}" id="file_{{file.id}}" style="opacity: {{file.ftype==='team'?0.5:1}}">
+                <file-icon size="large" type="{{file.ficon?file.ficon:icon(file.fname,file.ftype)}}"></file-icon>
+                <view class="file_item_center">
+                    <text class="file_item_name max-2-lines">{{noExtName(file.fname,file.ftype)}}</text>
+                    <view class="file_item_info">
+                        <text>{{date(from==='recent'?file.mtime_recent:file.mtime)}}</text>
+                    </view>
+                </view>
+                <view class="file_item_right">
+                    <image class="selected_icon" src="{{!!selected[file.id]?'../../libs/img/round_checked.png':'../../libs/img/round_unchecked.png'}}"></image>
+                </view>
+            </view>
+            <hair-line class="line"></hair-line>
+        </block>
+        <view class="loading">{{loadMoreText}}</view>
+    </scroll-view>
+    <view class="bottom_layout">
+        <view bindtap="tapMove" class="bottom_item" wx:if="{{from&&from!=='recent'}}">
+            <image class="bottom_item_img" src="../../libs/img/multiple_move.png"></image>
+            <text class="bottom_item_text">移动</text>
+        </view>
+        <view bindtap="tapDelete" class="bottom_item" wx:if="{{!!from}}">
+            <image class="bottom_item_img" src="../../libs/img/multiple_delete.png"></image>
+            <text class="bottom_item_text">删除</text>
+        </view>
+    </view>
+    <hair-line class="bottom_line" color="#C6C6C6"></hair-line>
+</view>
+<wxs module="icon" src="../../components/icon.wxs" />
+<wxs module="unit" src="../../components/unit.wxs" />
+<wxs module="date" src="../../components/date.wxs" />
+<wxs module="noExtName" src="../../components/fname.wxs" />

@@ -1,0 +1,17 @@
+<view class="page">
+    <file-item bind:filetapevent="fileItemTap" ficon="share-folder" fname="协作文档" ftype="allTeams" isbindTap="{{true}}" nobottomline="{{false}}" showOperate="{{false}}" type="allTeams" wx:if="{{allTeamsVisible}}"></file-item>
+    <view style="opacity:0.5;" wx:if="{{allTeamsVisible}}">
+        <file-item bind:filetapevent="myDeviceTap" ficon="/libs/img/devicelist.png" fname="我的设备" isbindTap="{{true}}" showOperate="{{false}}" type="devicelist"></file-item>
+    </view>
+    <file-list bind:filetapevent="fileItemTap" bind:loadStatus="onloadStatusChange" id="filelist" isbindTap="{{true}}" selectedIndexs="{{selectedIndexs}}" showOperate="{{false}}" showSelect="{{showSelect}}" type="file">
+        <view class="empty">目录为空</view>
+    </file-list>
+    <view class="bottomBtnContainer">
+        <view class="bottomBg">
+            <view class="bttomBtnView" style="width:{{100/btnTexts.length}}%" wx:for="{{btnTexts}}" wx:key="index">
+                <button bindtap="optBtnTap" class="submitBtn" data-index="{{index}}" disabled="{{btnDisable}}" hoverClass="globalBottomSubmitBtnHover">{{btnTexts[index]}}
+        </button>
+            </view>
+        </view>
+    </view>
+</view>

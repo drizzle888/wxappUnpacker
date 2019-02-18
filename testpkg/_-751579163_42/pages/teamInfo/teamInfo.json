@@ -1,0 +1,9 @@
+{
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "hair-line": "../../components/HairLine/index",
+        "file-list": "../../components/FileList/index",
+        "member-list": "../../components/MemberList/index",
+        "float-btn": "../../components/FloatBtn/index"
+    }
+}

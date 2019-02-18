@@ -1,0 +1,129 @@
+scroll-view {
+    left: 0rpx;
+    right: 0rpx;
+    top: 0rpx;
+    bottom: 112rpx;
+    position: absolute;
+    background: #FFF;
+}
+
+.file_item {
+    min-height: 136rpx;
+    padding-left: 36rpx;
+    display: flex;
+    align-items: center;
+}
+
+file-icon {
+    flex: none;
+    align-self: flex-start;
+    width: 96rpx;
+    height: 104rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.file_item_center {
+    flex: auto;
+    padding-top: 26rpx;
+    padding-bottom: 26rpx;
+    min-height: 84rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.file_item_name {
+    color: #353535;
+    font-size: 32rpx;
+}
+
+.max-2-lines {
+    max-height: 90rpx;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    line-height: 45rpx;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.file_item_info {
+    color: #979797;
+    font-size: 24rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    overflow: hidden;
+}
+
+.file_item_info text {
+    margin-right: 10rpx;
+}
+
+.file_item_right {
+    flex: 0 0 102rpx;
+    display: flex;
+    justify-content: center;
+}
+
+.selected_icon {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.line {
+    position: absolute;
+    left: 132rpx;
+    right: 0rpx;
+}
+
+.loading {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24rpx;
+    color: #979797;
+    line-height: 120rpx;
+    min-height: 120rpx;
+}
+
+.bottom_line {
+    left: 0rpx;
+    right: 0rpx;
+    bottom: 112rpx;
+    position: fixed;
+    height: 1rpx;
+}
+
+.bottom_layout {
+    left: 0rpx;
+    right: 0rpx;
+    bottom: 0rpx;
+    height: 112rpx;
+    position: fixed;
+    background: #F7F7F7;
+    display: flex;
+}
+
+.bottom_item {
+    flex: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom_item_img {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.bottom_item_text {
+    font-size: 24rpx;
+    color: #626B84;
+    margin-top: 8rpx;
+}

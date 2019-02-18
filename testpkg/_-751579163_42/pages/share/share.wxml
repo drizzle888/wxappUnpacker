@@ -1,0 +1,166 @@
+<view wx:if="{{isShowFakeHome}}">
+    <fake-home bind:requestLogin="requestLogin" bind:requestPreview="toPreview" fname="{{fname}}" wx:if="{{allowShowFakeHome}}"></fake-home>
+</view>
+<view class="root" wx:elif="{{fname}}">
+    <add-mini-program-guide from="share"></add-mini-program-guide>
+    <view bindtap="tapPreview" class="card" hoverClass="card_hover">
+        <view class="file_info">
+            <image class="header_icon" src="../../libs/img/svgs/{{shareicon}}.svg" wx:if="{{shareicon}}"></image>
+            <text class="file_info_txt">{{noExtName(fname,'file')}}</text>
+        </view>
+        <hair-line class="bottom_line"></hair-line>
+        <view class="expired_layout" wx:if="{{creator&&close}}">
+            <text class="expired_txt">分享文件已过期，点击按钮重启</text>
+            <button catchtap="tapOpenLink" class="expired_button" hoverClass="button_hover" loading="{{openLoading}}">开启分享</button>
+        </view>
+        <view class="operate_layout" wx:else>
+            <button catchtap="tapSendFriend" class="operate_item" id="stat-sendbutton-clicks" openType="share" wx:if="{{isLogin}}">
+                <image class="operate_icon" src="../../libs/img/share.png"></image>
+                <text class="operate_txt">分享</text>
+            </button>
+            <button catchtap="tapShareLogin" class="operate_item" wx:else>
+                <image class="operate_icon" src="../../libs/img/share.png"></image>
+                <text class="operate_txt">分享</text>
+            </button>
+            <button catchtap="tapSendClient" class="operate_item" id="stat-send2pc-clicks">
+                <image class="operate_icon" src="../../libs/img/send2pc.png"></image>
+                <text class="operate_txt">发至电脑</text>
+            </button>
+            <button catchtap="tapSaveFile" class="operate_item" id="stat-save-clicks" wx:if="{{!creator}}">
+                <image class="operate_icon" src="../../libs/img/save_as.png"></image>
+                <text class="operate_txt">另存为</text>
+            </button>
+            <block wx:if="{{shareicon&&shareicon==='pdf'}}">
+                <navigator appId="{{pdfAppId}}" bindfail="bindPdfFail" bindsuccess="bindPdfSuccess" catchtap="tapNavigatorPdf" class="operate_item" extraData="{{pdfExtraData}}" openType="navigate" path="{{pdfPath}}" target="miniProgram" wx:if="{{isLogin&&pdfAppId}}">
+                    <image class="operate_icon" src="../../libs/img/pdf2word.png"></image>
+                    <text class="operate_txt">转为Word</text>
+                </navigator>
+                <button catchtap="tapToWord" class="operate_item" wx:else>
+                    <image class="operate_icon" src="../../libs/img/pdf2word.png"></image>
+                    <text class="operate_txt">转为Word</text>
+                </button>
+            </block>
+        </view>
+    </view>
+    <view class="clz_bind_phone_guide_container" wx:if="{{(!creator||!close)&&isLogin&&showBindPhoneBtn}}">
+        <view class="clz_bind_phone_guide">
+            <image class="clz_bind_phone_icon" mode="aspectFit" src="../../libs/img/bind_phone.png"></image>
+            <view class="clz_bind_phone_title">绑定手机号</view>
+            <view class="clz_bind_phone_msg">帐号未保护，请绑定手机确保帐号安全</view>
+            <hair-line class="clz_bind_phone_line"></hair-line>
+            <button bindgetphonenumber="getPhoneNumber" bindtap="tapBindPhone" class="clz_bind_phone_btn" openType="getPhoneNumber">
+                <text>绑定微信手机号</text>
+            </button>
+        </view>
+    </view>
+    <view bindtap="tapNewGroupCard" class="card" hoverClass="card_hover">
+        <block wx:if="{{isLogin&&contactsLoaded}}">
+            <view wx:if="{{!isCompanyAccount}}">
+                <view wx:if="{{contacts.length>2}}">
+                    <view class="new_group_title">与协作者共享文件</view>
+                    <hair-line class="bottom_line"></hair-line>
+                    <view class="more-contacts-layout">
+                        <view class="contacts-container">
+                            <image class="contact-image" src="https://qn.cache.wpscdn.cn/wxminiprogram/sharefolder/more_icon.png"></image>
+                            <image class="contact-image" src="{{contacts[2].avatar}}" style="margin-right:-16rpx"></image>
+                            <image class="contact-image" src="{{contacts[1].avatar}}" style="margin-right:-16rpx"></image>
+                            <image class="contact-image" src="{{contacts[0].avatar}}" style="margin-right:-16rpx"></image>
+                        </view>
+                        <view class="new-group-tip new-group-text">
+                            <text>创建协作团队可与多人共享群文件</text>
+                        </view>
+                        <button class="new-group-btn" hoverClass="globalBottomSubmitBtnHover">
+                            <text>立即创建协作</text>
+                        </button>
+                    </view>
+                </view>
+                <view class="less-contacts-layout" wx:else>
+                    <image class="less-contacts-image" src="../../libs/img/invite-friend.png"></image>
+                    <view class="invite-friend-tip new-group-text">
+                        <text>你可以把好友邀请到团队，共同协作文件</text>
+                    </view>
+                    <button class="new-group-btn" hoverClass="globalBottomSubmitBtnHover">
+                        <text>立即创建团队</text>
+                    </button>
+                </view>
+            </view>
+        </block>
+        <view class="less-contacts-layout" wx:else>
+            <view class="relationship-layout">
+                <view class="relationship-item">
+                    <image class="team-icon" src="../../libs/img/workmate.png"></image>
+                    <text class="relation-tip">工作同事</text>
+                </view>
+                <view class="relationship-item">
+                    <image class="team-icon" src="../../libs/img/classmate.png"></image>
+                    <text class="relation-tip">班级同学</text>
+                </view>
+                <view class="relationship-item">
+                    <image class="team-icon" src="../../libs/img/studymate.png"></image>
+                    <text class="relation-tip">学习伙伴</text>
+                </view>
+            </view>
+            <view class="unlogin-new-group-tip new-group-text">
+                <text>看看谁和你有文件来往</text>
+            </view>
+            <button class="new-group-btn" hoverClass="globalBottomSubmitBtnHover">
+                <text>立即查看</text>
+            </button>
+        </view>
+    </view>
+    <view bindtap="tapRecentCard" class="card" hoverClass="card_hover">
+        <block wx:if="{{isLogin}}">
+            <view class="recent_title">最近</view>
+            <hair-line class="bottom_line"></hair-line>
+            <view class="recent_empty" wx:if="{{recentFiles.length===0}}">暂无打开记录</view>
+            <block wx:else>
+                <block wx:for="{{recentFiles}}" wx:for-item="file" wx:key="{{ file.id }}">
+                    <view catchtap="tapRecentItem" class="recent_item" data-index="{{index}}">
+                        <file-icon class="recent_icon" size="big" type="{{icon(file.fname,file.ftype)}}"></file-icon>
+                        <text class="file_info_txt">{{noExtName(file.fname,file.ftype)}}</text>
+                    </view>
+                    <hair-line class="recent_line" wx:if="{{index!==recentFiles.length-1}}"></hair-line>
+                </block>
+            </block>
+            <hair-line class="bottom_line"></hair-line>
+            <view class="bottom">
+                <text class="bottom_txt">进入金山文档</text>
+                <image class="bottom_icon" src="../../libs/img/link.png"></image>
+            </view>
+        </block>
+        <view class="recent_login" wx:else>
+            <image class="recent_login_icon" src="https://qn.cache.wpscdn.cn/wxminiprogram/share/recent_open.png"></image>
+            <text class="recent_login_txt">查看最近打开的文档</text>
+            <button catchtap="tapViewNow" class="expired_button recent_login_button" hoverClass="button_hover">立即查看</button>
+        </view>
+    </view>
+    <view bindtap="tapNewDoc" class="card" hoverClass="card_hover">
+        <view class="center">
+            <image class="center_icon" src="../../libs/img/invite.png"></image>
+            <view class="center_right">
+                <text class="center_right_title">用小程序写文档</text>
+                <text class="center_right_desc">可邀请微信好友加入一起写</text>
+            </view>
+        </view>
+        <hair-line class="bottom_line"></hair-line>
+        <view class="bottom">
+            <text class="bottom_txt">去试试</text>
+        </view>
+    </view>
+    <view bindtap="tapPc" class="card margin_bottom" hoverClass="card_hover">
+        <view class="center">
+            <image class="center_icon" src="../../libs/img/computer.png"></image>
+            <view class="center_right">
+                <text class="center_right_title">访问电脑版</text>
+                <text class="center_right_desc">登录docs.wps.cn查看文档</text>
+            </view>
+        </view>
+        <hair-line class="bottom_line"></hair-line>
+        <view class="bottom">
+            <text class="bottom_txt">了解一下</text>
+        </view>
+    </view>
+</view>
+<login-dialog bind:cancel="loginDialogCancel" bind:confirm="loginDialogConfirm" wx:if="{{!isShowFakeHome&&showLoginDialog&&fname}}"></login-dialog>
+<wxs module="icon" src="../../components/icon.wxs" />
+<wxs module="noExtName" src="../../components/fname.wxs" />

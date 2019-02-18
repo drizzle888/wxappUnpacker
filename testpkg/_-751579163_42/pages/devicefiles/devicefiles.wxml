@@ -1,0 +1,3 @@
+<file-list bind:loadStatus="onloadStatusChange" id="filelist" showOperate="{{true}}">
+    <view class="empty">暂无文档</view>
+</file-list>

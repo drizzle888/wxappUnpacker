@@ -1,0 +1,49 @@
+<view class="page" wx:if="{{loaded}}">
+    <view class="title-item">
+        <file-icon class="title-icon" size="large" type="{{icon(fname,ftype)}}"></file-icon>
+        <text class="title-name">{{noExtName(fname,ftype)}}</text>
+    </view>
+    <view class="header">
+        <text class="header-text" wx:if="{{!permissionDenied}}">{{members.length}} 人加入</text>
+    </view>
+    <block wx:if="{{!permissionDenied}}">
+        <view class="members-container">
+            <view wx:if="{{members.length>0}}" wx:for="{{members}}" wx:for-item="member" wx:key="{{ member.id }}">
+                <view bindtap="tapPermission" class="member-item" data-memberid="{{member.id}}">
+                    <image class="avatar" src="{{member.avatar}}"></image>
+                    <text class="name">{{member.name}}</text>
+                    <text class="permission">{{member.permission}}</text>
+                    <image class="arrow" src="../../libs/img/member-spread.png"></image>
+                </view>
+                <view class="line"></view>
+            </view>
+            <view class="no-members" wx:if="{{!members.length}}">
+                <text class="no-members-text">可邀请好友一起编辑文档</text>
+            </view>
+        </view>
+        <view class="bottom-align" wx:if="{{inviteOpen&&inviteLoaded}}">
+            <view>
+                <button bindtap="tapOthers" class="otherBtn" hoverClass="copyBtnHover">
+                    <text>其他方式</text>
+                </button>
+                <button bindtap="tapSend" class="sendBtn" hoverClass="globalBottomSubmitBtnHover" openType="share">
+                    <text>邀请微信好友</text>
+                </button>
+            </view>
+            <view class="setting-view">
+                <view>
+                    <text class="expire-text">{{inviteExpireTxt}}</text>
+                    <text bindtap="tapSetting" class="setting-btn">设置</text>
+                </view>
+            </view>
+        </view>
+        <view class="bottom-align" wx:if="{{!inviteOpen&&inviteLoaded}}">
+            <button bindtap="tapOpenInvite" class="openBtn" hoverClass="globalBottomSubmitBtnHover">
+                <text>开启编辑邀请</text>
+            </button>
+        </view>
+    </block>
+    <text class="error-text" wx:else>没有操作权限</text>
+</view>
+<wxs module="icon" src="../../components/icon.wxs" />
+<wxs module="noExtName" src="../../components/fname.wxs" />

@@ -1,0 +1,38 @@
+<view class="root">
+    <view class="center" hidden="{{tab!=='home'}}">
+        <view bindtap="tapAddMemberByHome" class="add_member_menu">
+            <image class="new_team_menu_icon" src="../../libs/img/add_member.svg"></image>
+            <text class="new_team_menu_text">添加成员</text>
+            <view class="clz_red_point" wx:if="{{showRedPoint}}"></view>
+        </view>
+        <view class="add_member_divider"></view>
+        <file-list bind:loadStatus="onloadStatusChange" id="filelist" showOperate="{{true}}" type="file">
+            <view class="empty">暂无目录</view>
+        </file-list>
+    </view>
+    <view class="center" hidden="{{tab!=='member'}}">
+        <view bindtap="tapAddMemberByMember" class="add_member_menu">
+            <image class="new_team_menu_icon" src="../../libs/img/add_member.svg"></image>
+            <text class="new_team_menu_text">添加成员</text>
+            <view class="clz_red_point" wx:if="{{showRedPoint}}"></view>
+        </view>
+        <view class="add_member_divider"></view>
+        <member-list bind:memberRemoved="onMemberRemoved" groupid="{{groupid}}" id="memberList"></member-list>
+    </view>
+    <view class="title_container">
+        <view class="clz-title-team-header-container">
+            <view class="clz-title-team-header">{{teamHeaderTitle}}</view>
+            <image bindtap="tapEditTeamName" class="clz-team-name-edit-icon" src="../../libs/img/svgs/team_name_edit.svg" wx:if="{{showEditTeamNameBtn}}"></image>
+        </view>
+        <view class="clz-btn-share-team-container">
+            <button bindtap="tapShareTeam" class="clz-btn-share-team" hoverClass="clz-btn-share-team-hover">共享</button>
+        </view>
+        <view class="title_bar">
+            <text bindtap="tapHome" class="{{tab==='home'?'title_selected':'title'}}">首页</text>
+            <text bindtap="tapMember" class="{{tab==='member'?'title_selected':'title'}}">成员 ({{member_count}})</text>
+        </view>
+        <hair-line class="title_line"></hair-line>
+        <view animation="{{titleIndexAnim}}" class="title_index"></view>
+    </view>
+    <float-btn class="float-btn" groupid="{{groupid}}" id="newButton" parentid="0" wx:if="{{groupid&&tab==='home'}}"></float-btn>
+</view>

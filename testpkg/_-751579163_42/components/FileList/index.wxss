@@ -1,0 +1,8 @@
+.loading {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24rpx;
+    color: #979797;
+    line-height: 120rpx;
+    min-height: 120rpx;
+}

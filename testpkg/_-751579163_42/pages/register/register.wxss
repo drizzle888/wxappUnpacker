@@ -1,0 +1,52 @@
+page {
+    height: 100%;
+}
+
+.auth-page {
+    height: 100%;
+    overflow: hidden;
+    background-color: #2569F7;
+    background-size: 375px;
+    background-repeat: no-repeat;
+    background-image: url(https://qn.cache.wpscdn.cn/wxminiprogram/auth/auth_bg.png);
+}
+
+.auth-image {
+    display: block;
+    margin: 260rpx auto 0 auto;
+    width: 228rpx;
+    height: 285rpx;
+}
+
+.auth-icon {
+    width: 750rpx;
+    height: 500rpx;
+}
+
+.auth-tip {
+    display: block;
+    margin: 222rpx auto 30rpx auto;
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #9AAFFB;
+    text-align: center;
+}
+
+.auth-button {
+    font-family: PingFangSC-Regular;
+    font-size: 36rpx;
+    color: #FFFFFF;
+    text-align: center;
+    background: #49C75B;
+    width: 542rpx;
+    height: 92rpx;
+    border-radius: 10rpx;
+}
+
+.auth-wechat-icon {
+    vertical-align: top;
+    margin-top: 24rpx;
+    width: 44rpx;
+    height: 44rpx;
+    margin-right: 20rpx;
+}

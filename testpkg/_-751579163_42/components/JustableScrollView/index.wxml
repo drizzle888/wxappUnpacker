@@ -1,0 +1,6 @@
+<scroll-view id="id-justable-scroll-view" scrollIntoView="{{scrollToView}}" scrollWithAnimation="{{true}}" scrollX="{{true}}" style="{{scrollViewWidth?'width: '+scrollViewWidth+'px;':''}}">
+    <view class="clz-scroll-view-slot-container">
+        <slot></slot>
+        <view id="id-right-end-view"></view>
+    </view>
+</scroll-view>

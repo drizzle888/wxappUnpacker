@@ -1,0 +1,17 @@
+.wrapper {
+    white-space: nowrap;
+    word-break: keep-all;
+    display: flex;
+    height: 136rpx;
+    min-height: 136rpx;
+    width: 102rpx;
+    min-width: 102rpx;
+    align-items: center;
+    justify-content: center;
+}
+
+.opt-item {
+    font-size: 40rpx;
+    width: 30rpx;
+    height: 30rpx;
+}

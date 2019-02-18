@@ -1,0 +1,4 @@
+<view class="wrapper">
+    <image class="selected_icon" src="{{utils.contains(selectedIndexs,index)?'../../../libs/img/round_checked.png':'../../../libs/img/round_unchecked.png'}}"></image>
+</view>
+<wxs module="utils" src="../../utils.wxs" />

@@ -1,0 +1,55 @@
+.wrapper {
+    height: 100%;
+}
+
+.title_container {
+    background: #fff;
+}
+
+.title_bar {
+    width: 100%;
+    display: flex;
+}
+
+.tab {
+    flex: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.title {
+    height: 88rpx;
+    line-height: 88rpx;
+    font-size: 32rpx;
+    font-weight: 400;
+    color: rgba(151,151,151,1);
+}
+
+.title_selected {
+    height: 88rpx;
+    line-height: 88rpx;
+    font-size: 32rpx;
+    font-weight: 400;
+    color: rgba(46,104,248,1);
+}
+
+.title_index {
+    width: 120rpx;
+    height: 5rpx;
+    background: #2E68F8;
+    margin: 0 auto;
+}
+
+.empty {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.no-record {
+    color: #979797;
+    font-size: 28rpx;
+    padding-bottom: 28rpx;
+}

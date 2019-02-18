@@ -1,0 +1,14 @@
+<view class="warpper">
+    <image class="image" mode="aspectFill" src="https://qn.cache.wpscdn.cn/wxminiprogram/share/collect_1.png"></image>
+    <view class="tip-title">向微信好友收取文件</view>
+    <view class="tip-desc">可收取项目资料、作业等</view>
+    <view class="tip-desc">收到的文件将存至</view>
+    <view bindtap="tapRename" class="fileline">
+        <view class="filename">{{fname}}</view>
+        <image class="rename" src="../../libs/img/filecollect-edit.png"></image>
+    </view>
+    <view class="bottom">
+        <button bindtap="tapShare" class="btn" hoverClass="btnHover" openType="share">发起群收文件</button>
+        <view class="tip">群收文件将在{{expire}}结束</view>
+    </view>
+</view>

@@ -1,0 +1,14 @@
+<rich-text class="item-name max-2-lines" nodes="{{'<div class=max-2-lines>'+highlight.getFormatedFname(highlightFname,ftype)+'</div>'}}" wx:if="{{highlightFname}}"></rich-text>
+<view class="item-name max-2-lines" wx:else>{{noExtName(fname,ftype)}}</view>
+<view class="item-info" wx:if="{{highlightFname}}">
+    <rich-text class="item-rich-text" nodes="{{'<div class=item-rich-text>'+date(showRecentTime?mtime_recent:mtime)+(highlightSharer?'&nbsp;&nbsp;&nbsp;&nbsp;'+highlight.getFormatedText(highlightSharer+' 分享'):highlightCreator?'&nbsp;&nbsp;&nbsp;&nbsp;'+highlight.getFormatedText(highlightCreator+' 创建'):'')+(path?'&nbsp;&nbsp;&nbsp;&nbsp;'+path:'')+'</div>'}}"></rich-text>
+</view>
+<view class="item-info" wx:elif="{{fsrc||fszie||mtime||mtime_recent||detail}}">
+    <view class="item-mtime" wx:if="{{ftype!='wpscourselink'}}">{{date(showRecentTime?mtime_recent:mtime)}}</view>
+    <view class="item-fsrc" wx:if="{{ftype!=='folder'&&fsrc&&showFrom}}">{{'来自 '+fsrc}} </view>
+    <view class="item-fsrc" wx:if="{{ftype!=='folder'&&fsize&&showSize}}">{{unit(fsize)}} </view>
+    <view class="item-fsrc" wx:if="{{detail}}">{{detail}}</view>
+</view>
+<wxs module="noExtName" src="../../fname.wxs" />
+<wxs module="highlight" src="../../highlight.wxs" />
+<wxs module="date" src="../../date.wxs" />

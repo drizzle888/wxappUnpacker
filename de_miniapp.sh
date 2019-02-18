@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # MyWxappUnpacker 项目路径
-WXAPPUNPACKER_PATH=/shared/my_git/python/MyWxappUnpacker
+WXAPPUNPACKER_PATH=`pwd`
 
 FILE_FORMAT=wxapkg
 
