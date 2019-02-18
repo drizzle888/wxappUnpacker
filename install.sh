@@ -23,7 +23,7 @@ npm list escodegen
 
 # echo "3. npm install"
 # npm install
-
+	return 0;
 }
 
 install_npm()
@@ -52,10 +52,11 @@ check_menu()
 
   if [ "-npm" == "$1" ]
    then  install_npm $args $param
-       elif [ "-dpc" == "$1" ]
-     then
+      elif [ "-dpc" == "$1" ]
+    then
      install_dependency $args $param
-     else install_dependency $args $param
+   else
+    install_dependency $1 $2
    fi
    	return 0;
 }

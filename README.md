@@ -7,9 +7,10 @@
 ## 说明
 
 - 本文是基于 [wxappUnpacker](https://github.com/qwerty472123/wxappUnpacker "wxappUnpacker") 创作的。
-- 修复 “ReferenceError: $gwx is not defined” 等问题
+- 修复 “ReferenceError: $gwx is not defined” 和 extract wxss 等问题
 - 支持分包
 - 支持一键解包
+- 支持一键安装各种依赖
 
 ### wxapkg 包的获取
 
@@ -30,7 +31,7 @@ Android 手机最近使用过的微信小程序所对应的 wxapkg 包文件都�
 - 安装依赖
 
 ```bash
-./install.sh -dpc
+./install.sh
 ```
 
 - 解包某个小程序
@@ -58,3 +59,11 @@ Android 手机最近使用过的微信小程序所对应的 wxapkg 包文件都�
 ```
 
 ![解包后的目录文件](testpkg/testdir.png)
+
+## 关于作者
+jinqianli
+email:jinqiangood@gmail.com
+[jinqianli-知乎](https://www.zhihu.com/people/jinqianli/).
+[jinqianli-cnblog](https://www.cnblogs.com/larack/).
+
+![jinqianli-官方小程序](testpkg/jinqianli_miniapp_logo.jpg)
