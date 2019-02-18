@@ -4,6 +4,84 @@ const fs=require("fs");
 const {VM}=require('vm2');
 const cssbeautify=require('cssbeautify');
 const csstree=require('css-tree');
+const cheerio = require('cheerio');
+function chomp_balanced(input_str, scan_start, open_char, close_char) {
+	quote_chars = ['\"', '\''];
+	let now = scan_start - 1;
+	let depth = 0;
+	let in_quote = false;
+	let start = -1;
+	let end = -1;
+	let end_index = input_str.length - 1;
+	let now_quote_char = undefined;
+	let c = undefined;
+	let last_char = undefined;
+
+	let escape_char = '\\';
+	while (true) {
+		now += 1;
+		if (now > end_index) {
+			break
+		}
+		last_char = c;
+		c = input_str[now];
+		if (quote_chars.indexOf(c) > -1 && c !== open_char) {
+			if (in_quote && c === now_quote_char && last_char !== escape_char) {
+				in_quote = false;
+				now_quote_char = undefined
+			} else {
+				if (!in_quote) {
+					now_quote_char = c;
+				}
+				in_quote = true;
+			}
+			continue;
+		}
+		if (in_quote) {
+			continue;
+		}
+
+		if (open_char !== close_char) {
+			if (c === open_char) {
+				depth += 1;
+				if (start === -1) {
+					start = now
+				}
+				// let left = input_str.substr(now);
+				// console.log(left);
+			} else if (c === close_char) {
+				depth -= 1;
+				if (depth === 0) {
+					end = now;
+					break;
+				}
+			}
+
+		} else {
+			//开闭相同的时候,相同即可退出
+			if (c === open_char) {
+				depth += 1;
+				if (start === -1) {
+					start = now
+				}
+				if (depth === 2) {
+					// 开闭相同，这个时候就满足条件了
+					end = now;
+					break
+				}
+			}
+		}
+	}
+	if (start >= 0 && end > 0) {
+		return {
+			start: start,
+			end: end
+		}
+
+	}
+	return undefined;
+}
+
 function doWxss(dir,cb){
 	function GwxCfg(){}
 	GwxCfg.prototype={$gwx(){}};
@@ -152,13 +230,58 @@ function doWxss(dir,cb){
 			frameFile=path.resolve(dir,"page-frame.js");
 		else throw Error("page-frame-like file is not found in the package by auto.");
 		wu.get(frameFile,code=>{
+
+			let scriptCode = code;
+			//extract script content from html
+			if (frameFile.endsWith(".html")) {
+				try {
+					const $ = cheerio.load(code);
+					scriptCode = [].join.apply($('html').find('script').map(function (item) {
+						return $(this).html();
+					}, "\n"));
+				} catch (e) {
+					//ignore
+				}
+			}
+
+			let window = {
+				screen: {
+					width: 720,
+					height: 1028,
+					orientation: {
+						type: 'vertical'
+					}
+				}
+			};
+			let navigator = {
+				userAgent: "iPhone"
+			};
+
+
+			let mainCode = 'window= ' + JSON.stringify(window) +
+				';\nnavigator=' + JSON.stringify(navigator) +
+				//";\ndocument=" + document +
+				";\n" + scriptCode;
+
+			//remove setCssToHead function
+			let setCssToHeadFuctionStartIndex = mainCode.indexOf("var setCssToHead = function");
+			let setCssToHeadFunctionParamIndexes = chomp_balanced(mainCode, setCssToHeadFuctionStartIndex, '(', ')');
+			let setCssToHeadFunctionEndIndexes = chomp_balanced(mainCode, setCssToHeadFunctionParamIndexes.end + 1, '{', '}');
+			mainCode = mainCode.substr(0, setCssToHeadFuctionStartIndex) + mainCode.substr(setCssToHeadFunctionEndIndexes.end + 1);
+
+			//remove var __wxAppCode__ = {};
+			let wxAppCodeVarDeclare = "var __wxAppCode__={};";
+			let wxAppCodeVarDeclareIndex = mainCode.indexOf(wxAppCodeVarDeclare);
+			let wxAppCodeVarDeclareEnd = wxAppCodeVarDeclareIndex + wxAppCodeVarDeclare.length;
+			mainCode = mainCode.substr(0, wxAppCodeVarDeclareIndex) + mainCode.substr(wxAppCodeVarDeclareEnd);
+
 			code=code.slice(code.indexOf('var setCssToHead = function(file, _xcInvalid'));
 			code=code.slice(code.indexOf('\nvar _C= ')+1);
-			let oriCode=code;
+			//let oriCode=code;
 			code=code.slice(0,code.indexOf('\n'));
 			let vm=new VM({sandbox:{}});
 			pureData=vm.run(code+"\n_C");
-			let mainCode=oriCode.slice(oriCode.indexOf("setCssToHead"),oriCode.lastIndexOf(";var __pageFrameEndTime__"));
+			//let mainCode=oriCode.slice(oriCode.indexOf("setCssToHead"),oriCode.lastIndexOf(";var __pageFrameEndTime__"));
 			console.log("Guess wxss(first turn)...");
 			preRun(dir,frameFile,mainCode,files,()=>{
 				frameName=frameFile;
