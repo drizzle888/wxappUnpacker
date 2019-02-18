@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 
 install_dependency()
 {
@@ -12,8 +12,17 @@ sudo npm install uglify-es -g
 sudo npm install js-beautify -g
 sudo npm install escodegen -g
 
-echo "2. npmm install"
-npmm install
+echo "2. npm list"
+npm list esprima
+npm list css-tree
+npm list cssbeautify
+npm list vm2
+npm list uglify-es
+npm list js-beautify
+npm list escodegen
+
+# echo "3. npm install"
+# npm install
 
 }
 
