@@ -1,8 +1,0 @@
-<view class="top">
-    <view bindtap="tapAddMemberByMember" class="add_member_menu">
-        <image class="new_team_menu_icon" src="../../libs/img/add_member.svg"></image>
-        <text class="new_team_menu_text">添加成员</text>
-    </view>
-    <view class="add_memeber_divider"></view>
-    <member-list groupid="{{groupid}}" id="memberList"></member-list>
-</view>

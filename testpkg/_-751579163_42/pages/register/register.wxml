@@ -1,8 +1,0 @@
-<view class="auth-page">
-    <image class="auth-image" src="../../libs/img/logo.png"></image>
-    <view class="auth-tip">请授权小程序以继续使用金山文档服务</view>
-    <button bindgetuserinfo="getUserInfo" class="auth-button" openType="getUserInfo">
-        <image class="auth-wechat-icon" src="../../libs/img/wechat.png"></image>
-        <text class="auth-button-text">微信授权登录</text>
-    </button>
-</view>

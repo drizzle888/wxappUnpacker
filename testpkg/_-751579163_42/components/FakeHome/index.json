@@ -1,8 +1,0 @@
-{
-    "component": true,
-    "usingComponents": {
-        "search-button": "../SearchButton/index",
-        "float-btn": "../FloatBtn/index",
-        "file-item": "../FileItem/index"
-    }
-}

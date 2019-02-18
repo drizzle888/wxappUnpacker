@@ -1,9 +1,0 @@
-<navigator appId="{{appid}}" class="item" extraData="{{extraData}}" openType="navigate" path="{{path}}" target="miniProgram" wx:if="{{appid.length>0}}">
-    <image class="item-img" mode="aspectFill" src="../../libs/img/{{img}}.png"></image>
-    <view class="item-desc">{{desc}}</view>
-</navigator>
-<view bindtap="tapEvent" class="item" wx:elif="{{show}}">
-    <image class="item-img" mode="aspectFill" src="../../libs/img/{{img}}.png"></image>
-    <view class="item-desc">{{desc}}</view>
-    <view class="item-new" wx:if="{{isNew}}">NEW</view>
-</view>

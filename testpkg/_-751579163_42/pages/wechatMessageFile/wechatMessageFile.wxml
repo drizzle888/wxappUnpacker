@@ -1,9 +1,0 @@
-<view class="wrapper">
-    <progress activeColor="{{err?'#E97663':'#2E68F8'}}" borderRadius="10rpx" class="progress" percent="{{percent}}"></progress>
-    <view class="percent" wx:if="{{!err}}">{{percent}}%</view>
-    <view class="tip" wx:if="{{!err}}">
-        <view class="title">正在打开文件</view>
-    「 <text class="name">{{name}}</text> 」
-  </view>
-    <view class="err" wx:else> {{err}} </view>
-</view>

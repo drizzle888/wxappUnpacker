@@ -1,7 +1,0 @@
-{
-    "enablePullDownRefresh": false,
-    "usingComponents": {
-        "file-item": "../../../components/FileItem/index",
-        "file-list": "../../../components/FileList/index"
-    }
-}

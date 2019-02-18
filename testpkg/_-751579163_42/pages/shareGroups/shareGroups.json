@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "最近的协作",
-    "enablePullDownRefresh": true,
-    "usingComponents": {
-        "hair-line": "../../components/HairLine/index"
-    }
-}

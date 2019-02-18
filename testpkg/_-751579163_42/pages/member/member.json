@@ -1,5 +1,0 @@
-{
-    "usingComponents": {
-        "member-list": "../../components/MemberList/index"
-    }
-}

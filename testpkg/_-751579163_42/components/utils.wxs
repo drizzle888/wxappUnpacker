@@ -1,6 +1,0 @@
-var contains = function func(array, id) {
-    return (array.indexOf(id) !== -1)
-};
-module.exports = ({
-    contains: contains,
-});

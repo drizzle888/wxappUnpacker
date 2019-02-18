@@ -1,6 +1,0 @@
-<view class="clz_bind_phone_guide" wx:if="{{showBindPhoneGuide}}">
-    <button bindgetphonenumber="getPhoneNumber" bindtap="tapBindPhoneGuide" class="clz_bind_phone_guide_bg" disable="{{isBinding}}" openType="getPhoneNumber"></button>
-    <image catchtap="tapCloseBindPhoneGuide" class="clz_close_bind_phone_guide" mode="scaleToFill" src="../../libs/img/close_bind_phone.png"></image>
-    <view class="clz_bind_phone_guide_title">帐号未保护，请绑定手机确保帐号安全</view>
-    <button class="clz_bind_phone_guide_btn" loading="{{isBinding}}">{{isBinding?'':'去绑定'}}</button>
-</view>

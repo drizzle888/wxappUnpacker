@@ -1,6 +1,0 @@
-{
-    "component": true,
-    "usingComponents": {
-        "member-item": "../MemberItem/index"
-    }
-}

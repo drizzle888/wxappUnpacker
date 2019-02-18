@@ -1,6 +1,0 @@
-<view class="add_miniprogram_guide_pointer" wx:if="{{isShowGuide}}"></view>
-<view bindtap="handleTap" class="add_miniprogram_guide_text_container" wx:if="{{isShowGuide}}">
-    <view class="add_miniprogram_guide_text">添加到我的小程序</view>
-    <view class="add_miniprogram_guide_text">随时查看、分享文档</view>
-    <image class="close_btn" mode="scaleToFill" src="../../libs/img/add_mini_program_tip_close_btn.svg"></image>
-</view>

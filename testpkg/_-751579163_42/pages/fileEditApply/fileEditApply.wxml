@@ -1,7 +1,0 @@
-<view class="root">
-    <icon class="icon" color="#2569f7" size="93" type="success"></icon>
-    <text class="main-text">已通知对方</text>
-    <text class="sub-text">请确认关注「WPS办公助手」公众号，以接收对方给你的通知。</text>
-    <button bindtap="tapFollow" class="follow-btn" hoverClass="followBtnHover">关注公众号</button>
-    <button bindtap="tapReturn" class="return-btn" hoverClass="returnBtnHover">返回查看文档</button>
-</view>

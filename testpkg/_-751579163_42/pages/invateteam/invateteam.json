@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "金山文档",
-    "usingComponents": {
-        "file-icon": "../../components/FileIcon/index",
-        "justable-scroll-view": "../../components/JustableScrollView/index"
-    }
-}

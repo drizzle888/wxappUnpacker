@@ -1,7 +1,0 @@
-{
-    "usingComponents": {
-        "hair-line": "../../../components/HairLine/index"
-    },
-    "navigationBarTitleText": "填写反馈",
-    "navigationBarBackgroundColor": "#f5f5f5"
-}

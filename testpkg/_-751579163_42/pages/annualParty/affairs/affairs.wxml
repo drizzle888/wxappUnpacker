@@ -1,6 +1,0 @@
-<view bindtap="tapAffair" class="warpper">
-    <view class="title">金山办公2019年会</view>
-    <view class="time">时间：1月23日</view>
-    <view class="address">地址：中山市海港城7楼海港大酒楼大会堂</view>
-    <hair-line class="line" isStatic="{{true}}"></hair-line>
-</view>

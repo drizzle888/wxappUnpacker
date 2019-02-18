@@ -1,3 +1,0 @@
-<view catchtap="tapMore" class="wrapper">
-    <image class="opt-item" mode="aspectFit" src="../../../libs/img/more.png"></image>
-</view>

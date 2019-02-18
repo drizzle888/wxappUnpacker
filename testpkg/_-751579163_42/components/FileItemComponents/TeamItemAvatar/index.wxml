@@ -1,6 +1,0 @@
-<view class="avatar_container">
-    <image class="avatar_single" src="../../../libs/img/avatar_default.svg" wx:if="{{recent_members.length<=1}}"></image>
-    <block wx:else>
-        <image class="avatar" src="{{member.avatar}}" wx:if="{{index<4}}" wx:for="{{recent_members}}" wx:for-item="member" wx:key="{{ member.id }}"></image>
-    </block>
-</view>

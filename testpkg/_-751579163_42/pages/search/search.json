@@ -1,7 +1,0 @@
-{
-    "usingComponents": {
-        "search-button": "../../../components/SearchButton/index",
-        "file-list": "../../components/FileList/index",
-        "hair-line": "../../components/HairLine/index"
-    }
-}

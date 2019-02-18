@@ -1,6 +1,0 @@
-{
-    "usingComponents": {
-        "hair-line": "../../../components/HairLine/index"
-    },
-    "navigationBarTitleText": "我"
-}

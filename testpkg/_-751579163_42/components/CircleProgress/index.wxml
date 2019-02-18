@@ -1,5 +1,0 @@
-<view class="clz-circle-progress-container">
-    <view class="clz-circle-progress-background"></view>
-    <view class="clz-circle-progress-background-cover"></view>
-    <view class="clz-circle-progress-front"></view>
-</view>
