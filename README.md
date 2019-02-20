@@ -108,10 +108,10 @@ git clone https://github.com/larack8/calcwords
 
 > * jinqianli-官方小程序
 
-![jinqianli-官方小程序](testpkg/jinqianli_miniapp_logo.jpg)
+![jinqianli-官方小程序](testpkg/jinqianli_miniapp_logo.png)
 
-> 如果你觉得这篇文章很好，请赞赏作者加个鸡腿吧
+如果你觉得这篇文章很好，请赞赏作者加个鸡腿吧
 
-![jinqianli-赞赏码](testpkg/jinqianli_shoukuan.jpg)
+![jinqianli-赞赏码](testpkg/jinqianli_shoukuan.png)
 
 `jinqianli,2019.02.20`
