@@ -72,9 +72,10 @@ node wuWxapkg.js 小程序包路径(.wxapkg格式)
 
 ### 4. 提取统计WXSS或者其他样式
 
-** 详情参照 ** [calcwords](https://github.com/larack8/calcwords "calcwords")
+`详情参照` [calcwords](https://github.com/larack8/calcwords "calcwords")
 
 1. 下载calcwords源码
+
 ```bash
 git clone https://github.com/larack8/calcwords
 ```
@@ -92,7 +93,9 @@ git clone https://github.com/larack8/calcwords
 ```
 
 3. 打开输出结果文件
+
 如下图样式
+
 ![输出结果文件](testpkg/cc.png)
 
 
