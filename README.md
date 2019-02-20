@@ -4,15 +4,17 @@
 
 > Wechat App(微信小程序, .wxapkg)解包及相关文件(.wxss, .json, .wxs, .wxml)还原工具
 
-## 说明
+## 1. 说明
 
 - 本文是基于 [wxappUnpacker](https://github.com/qwerty472123/wxappUnpacker "wxappUnpacker") 创作的。
-- 修复 “ReferenceError: $gwx is not defined” 和 extract wxss 等问题
-- 支持分包
-- 支持一键解包
-- 支持一键安装各种依赖
+> - [x] 修复 “ReferenceError: $gwx is not defined” 和 extract wxss 等问题
+> - [x] 支持分包
+> - [x] 支持一键解包
+> - [x] 支持一键安装各种依赖
 
-### wxapkg 包的获取
+一键匹配、统计文本中的内容，请下载 [calcwords](https://github.com/larack8/calcwords "calcwords") 。
+
+### 2. wxapkg 包的获取
 
 Android 手机最近使用过的微信小程序所对应的 wxapkg 包文件都存储在特定文件夹下，可通过以下命令查看：
 
@@ -20,7 +22,7 @@ Android 手机最近使用过的微信小程序所对应的 wxapkg 包文件都�
 
 其中`{User}` 为当前用户的用户名，类似于 `2bc**************b65`。
 
-## 用法
+## 3. 用法
 
 - 安装npm和node
 
@@ -36,8 +38,16 @@ Android 手机最近使用过的微信小程序所对应的 wxapkg 包文件都�
 
 - 解包某个小程序
 
+法1:
+
 ```bash
 ./de_miniapp.sh  -d 小程序包路径(.wxapkg格式)
+```
+
+法2:
+
+```bash
+node wuWxapkg.js 小程序包路径(.wxapkg格式)
 ```
 
 - 一键解文件夹下所有小程序
@@ -60,10 +70,48 @@ Android 手机最近使用过的微信小程序所对应的 wxapkg 包文件都�
 
 ![解包后的目录文件](testpkg/testdir.png)
 
-## 关于作者
-jinqianli
-email:jinqiangood@gmail.com
-[jinqianli-知乎](https://www.zhihu.com/people/jinqianli/).
-[jinqianli-cnblog](https://www.cnblogs.com/larack/).
+### 4. 提取统计WXSS或者其他样式
+
+** 详情参照 ** [calcwords](https://github.com/larack8/calcwords "calcwords")
+
+1. 下载calcwords源码
+```bash
+git clone https://github.com/larack8/calcwords
+```
+
+2. 设置统计的.wxapkg路径和输入结果路径，调用 calcWxssStyle
+
+```bash
+	public static void testCalcWords() throws IOException {
+		String fromFilePath = "/Users/Shared/my_git/java/CalcWords/testletters/";
+		String resultFilePath = "/Users/Shared/my_git/java/CalcWords/result.txt";
+
+		calcWxssStyle(fromFilePath, resultFilePath);// 统计微信小程序源码WWXSS样式
+//		calcWxssProperty(fromFilePath, resultFilePath);// 统计微信小程序源码WXSS属性
+	}
+```
+
+3. 打开输出结果文件
+如下图样式
+![输出结果文件](testpkg/cc.png)
+
+
+### 5. 关于作者
+
+> * jinqianli
+
+> * email: [jinqiangood@gmail.com], [larack@126.com]
+
+> * [jinqianli-知乎](https://www.zhihu.com/people/jinqianli/)
+
+> * [jinqianli-cnblog](https://www.cnblogs.com/larack/)
+
+> * jinqianli-官方小程序
 
 ![jinqianli-官方小程序](testpkg/jinqianli_miniapp_logo.jpg)
+
+> 如果你觉得这篇文章很好，请赞赏作者加个鸡腿吧
+
+![jinqianli-赞赏码](testpkg/jinqianli_shoukuan.jpg)
+
+`jinqianli,2019.02.20`
