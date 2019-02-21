@@ -24,6 +24,10 @@ Android 手机最近使用过的微信小程序所对应的 wxapkg 包文件都�
 
 ## 3. 用法
 
+用法分 mac 和 windows，请根据系统来操作
+
+### 1. for Mac OS (Mac操作系统)
+
 - 安装npm和node
 
 ```bash
@@ -38,16 +42,8 @@ Android 手机最近使用过的微信小程序所对应的 wxapkg 包文件都�
 
 - 解包某个小程序
 
-法1:
-
 ```bash
 ./de_miniapp.sh  -d 小程序包路径(.wxapkg格式)
-```
-
-法2:
-
-```bash
-node wuWxapkg.js 小程序包路径(.wxapkg格式)
 ```
 
 - 一键解文件夹下所有小程序
@@ -62,13 +58,28 @@ node wuWxapkg.js 小程序包路径(.wxapkg格式)
 ./de_miniapp.sh
 ```
 
-## 举例
+** 举例
 
+Mac OS
 ```bash
 ./de_miniapp.sh -d ./testpkg/_-751579163_42.wxapkg
 ```
 
 ![解包后的目录文件](testpkg/testdir.png)
+
+### 2. for Windows OS (Windows 操作系统)
+
+- 解包某个小程序
+
+```bash
+node wuWxapkg.js 小程序包路径(.wxapkg格式)
+```
+
+** 举例
+
+```bash
+node wuWxapkg.js testpkg\_-751579163_42.wxapkg
+```
 
 ### 4. 提取统计WXSS或者其他样式
 
