@@ -33,7 +33,30 @@ function doConfig(configFile, cb) {
         k.unshift(wu.changeExt(e.entryPagePath));
         let app = {pages: k, window: e.global && e.global.window, tabBar: e.tabBar, networkTimeout: e.networkTimeout};
         if (e.subPackages) {
-            app.subPackages = e.subPackages;
+            let subPackages = [];
+            let pages = app.pages;
+            for (let subPackage of e.subPackages) {
+                let root = subPackage.root;
+                let lastChar = root.substr(root.length - 1, 1);
+                if (lastChar !== '/') {
+                    root = root + '/';
+                }
+                let newPages = [];
+                for (let page of subPackage.pages) {
+                    let items = page.replace(root, '');
+                    newPages.push(items);
+                    let subIndex = pages.indexOf(root + items);
+                    console.log(root + items, subIndex);
+                    if (subIndex!==-1) {
+                        pages.splice(subIndex, 1);
+                    }
+                }
+                subPackage.root = root;
+                subPackage.pages = newPages;
+                subPackages.push(subPackage);
+            }
+            app.subPackages = subPackages;
+            app.pages = pages;
             console.log("=======================================================\nNOTICE: SubPackages exist in this package.\nDetails: ", app.subPackages.length, "\n=======================================================");
         }
         if (e.navigateToMiniProgramAppIdList) app.navigateToMiniProgramAppIdList = e.navigateToMiniProgramAppIdList;
