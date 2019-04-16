@@ -73,21 +73,55 @@ function packDone(dir, cb, order) {
         weappEvent.decount();
     }
 
-    //This will be the only func running this time, so async is needless.
-    if (fs.existsSync(path.resolve(dir, "app-service.js"))) {//weapp
+    function dealThreeThings(dir, mainDir) {
         console.log("Split app-service.js and make up configs & wxss & wxml & wxs...");
-        wuCfg.doConfig(path.resolve(dir, "app-config.json"), doBack);
-        wuJs.splitJs(path.resolve(dir, "app-service.js"), doBack);
-        if (fs.existsSync(path.resolve(dir, "workers.js")))
-            wuJs.splitJs(path.resolve(dir, "workers.js"), doBack);
-        if (fs.existsSync(path.resolve(dir, "page-frame.html")))
-            wuMl.doFrame(path.resolve(dir, "page-frame.html"), doBack, order);
-        else if (fs.existsSync(path.resolve(dir, "app-wxss.js"))) {
-            wuMl.doFrame(path.resolve(dir, "app-wxss.js"), doBack, order);
-            if (!needDelete[path.resolve(dir, "page-frame.js")]) needDelete[path.resolve(dir, "page-frame.js")] = 8;
-        } else throw Error("page-frame-like file is not found in the package by auto.");
-        wuSs.doWxss(dir, doBack);//Force it run at last, becuase lots of error occured in this part
-    } else if (fs.existsSync(path.resolve(dir, "game.js"))) {//wegame
+
+        //deal config
+        if (fs.existsSync(path.resolve(dir, "app-config.json"))) {
+            wuCfg.doConfig(path.resolve(dir, "app-config.json"), doBack);
+            console.log('deal config ok');
+        }
+        //deal js
+        if (fs.existsSync(path.resolve(dir, "app-service.js"))) {
+            wuJs.splitJs(path.resolve(dir, "app-service.js"), doBack, mainDir);
+            console.log('deal js ok');
+        }
+        if (fs.existsSync(path.resolve(dir, "workers.js"))) {
+            wuJs.splitJs(path.resolve(dir, "workers.js"), doBack, mainDir);
+            console.log('deal js2 ok');
+        }
+        //deal html
+        if (mainDir) {
+            if (fs.existsSync(path.resolve(dir, "page-frame.js"))) {
+                wuMl.doFrame(path.resolve(dir, "page-frame.js"), doBack, order, mainDir);
+                console.log('deal sub html ok');
+            }
+        } else {
+            if (fs.existsSync(path.resolve(dir, "page-frame.html"))) {
+                wuMl.doFrame(path.resolve(dir, "page-frame.html"), doBack, order, mainDir);
+                console.log('deal html ok');
+            } else if (fs.existsSync(path.resolve(dir, "app-wxss.js"))) {
+                wuMl.doFrame(path.resolve(dir, "app-wxss.js"), doBack, order, mainDir);
+                if (!needDelete[path.resolve(dir, "page-frame.js")]) {
+                    needDelete[path.resolve(dir, "page-frame.js")] = 8;
+                }
+                console.log('deal wxss.js ok');
+            } else {
+                throw Error("page-frame-like file is not found in the package by auto.");
+            }
+            wuSs.doWxss(dir, doBack, mainDir);//Force it run at last, becuase lots of error occured in this part
+
+            console.log('deal css ok');
+        }
+
+    }
+
+//This will be the only func running this time, so async is needless.
+    if (fs.existsSync(path.resolve(dir, "app-service.js"))) {
+        //weapp
+        dealThreeThings(dir);
+    } else if (fs.existsSync(path.resolve(dir, "game.js"))) {
+        //wegame
         console.log("Split game.js and rewrite game.json...");
         let gameCfg = path.resolve(dir, "app-config.json");
         wu.get(gameCfg, cfgPlain => {
@@ -107,7 +141,35 @@ function packDone(dir, cb, order) {
                 cb();
             });
         });
-    } else throw Error("This package is unrecognizable.\nMay be this package is a subPackage which should be unpacked with -s=<MainDir>.\nOtherwise, please decrypted every type of file by hand.")
+    } else {//分包
+        for (const orderElement of order) {
+            if (orderElement.indexOf('s=') !== -1) {
+                let mainDir = orderElement.substring(2, orderElement.length);
+                console.log("now dir: " + dir);
+                console.log("param of mainDir: " + mainDir);
+
+                let findDir = function (dir, oldDir) {
+                    let files = fs.readdirSync(dir);
+                    for (const file of files) {
+                        let workDir = path.join(dir, file);
+                        if (fs.existsSync(path.resolve(workDir, "app-service.js"))) {
+                            console.log("sub package word dir: " + workDir);
+                            mainDir = path.resolve(oldDir, mainDir);
+                            console.log("real mainDir: " + mainDir);
+                            dealThreeThings(workDir, mainDir);
+                            return true;
+                        } else {
+                            findDir(workDir, oldDir);
+                        }
+                    }
+
+                };
+
+                findDir(dir, dir);
+
+            }
+        }
+    }
 }
 
 function doFile(name, cb, order) {

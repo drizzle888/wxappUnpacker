@@ -34,7 +34,7 @@ function doConfig(configFile, cb) {
         let app = {pages: k, window: e.global && e.global.window, tabBar: e.tabBar, networkTimeout: e.networkTimeout};
         if (e.subPackages) {
             app.subPackages = e.subPackages;
-            console.log("=======================================================\nNOTICE: SubPackages exist in this package.\nDetails: ", app.subPackages, "\n=======================================================");
+            console.log("=======================================================\nNOTICE: SubPackages exist in this package.\nDetails: ", app.subPackages.length, "\n=======================================================");
         }
         if (e.navigateToMiniProgramAppIdList) app.navigateToMiniProgramAppIdList = e.navigateToMiniProgramAppIdList;
         if (fs.existsSync(path.resolve(dir, "workers.js"))) app.workers = getWorkerPath(path.resolve(dir, "workers.js"));
@@ -70,6 +70,16 @@ function doConfig(configFile, cb) {
         for (let a in e.page) {
             let fileName = path.resolve(dir, wu.changeExt(a, ".json"));
             wu.save(fileName, JSON.stringify(e.page[a].window, null, 4));
+            //添加默认的 wxs, wxml, wxss
+            let jsName = wu.changeExt(a, ".js");
+            let fileNameOfWxs = path.resolve(dir, jsName);
+            wu.save(fileNameOfWxs, "// " + jsName + "\nPage({data: {}})");
+            let wxmlName = wu.changeExt(a, ".wxml");
+            let fileNameOfWxml = path.resolve(dir, wxmlName);
+            wu.save(fileNameOfWxml, "<!--" + wxmlName + "--><text>" + wxmlName + "</text>");
+            let cssName = wu.changeExt(a, ".wxss");
+            let fileNameOfWxss = path.resolve(dir, cssName);
+            wu.save(fileNameOfWxss, "/* " + cssName + " */");
             if (configFile == fileName) delWeight = 0;
         }
         if (app.tabBar && app.tabBar.list) wu.scanDirByExt(dir, "", li => {//search all files

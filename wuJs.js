@@ -8,8 +8,8 @@ function jsBeautify(code) {
     return UglifyJS.minify(code, {mangle: false, compress: false, output: {beautify: true, comments: true}}).code;
 }
 
-function splitJs(name, cb) {
-    let dir = path.dirname(name);
+function splitJs(name, cb, mainDir) {
+    let dir = mainDir || path.dirname(name);
     wu.get(name, code => {
         let needDelList = {};
         let vm = new VM({
