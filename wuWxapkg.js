@@ -142,6 +142,7 @@ function packDone(dir, cb, order) {
             });
         });
     } else {//分包
+        let doSubPkg = false;
         for (const orderElement of order) {
             if (orderElement.indexOf('s=') !== -1) {
                 let mainDir = orderElement.substring(2, orderElement.length);
@@ -157,6 +158,7 @@ function packDone(dir, cb, order) {
                             mainDir = path.resolve(oldDir, mainDir);
                             console.log("real mainDir: " + mainDir);
                             dealThreeThings(workDir, mainDir);
+                            doSubPkg = true;
                             return true;
                         } else {
                             findDir(workDir, oldDir);
@@ -168,6 +170,9 @@ function packDone(dir, cb, order) {
                 findDir(dir, dir);
 
             }
+        }
+        if (!doSubPkg) {
+            throw new Error("This pkg may be a sub pkg, please add -s=Main Dir, like: node wuWxapkg.js -s=./testpkg/test/ ./testpkg/test-pkg-sub.wxapkg");
         }
     }
 }
