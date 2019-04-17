@@ -130,6 +130,6 @@ git clone https://github.com/larack8/calcwords
 
 `jinqianli,2019.02.20`
 
-# My Change
-实现 -s=<Main dir>  
+# 分包功能
+> 实现 `-s=<Main dir>`  
 若提示分包, 请按提示添加 -s 参数
