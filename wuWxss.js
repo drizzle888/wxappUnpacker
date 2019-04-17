@@ -173,6 +173,7 @@ function doWxss(dir, cb) {
         runList[path.resolve(dir, "./app.wxss")] = mainCode;
         for (let name of files) if (name != frameFile) {
             wu.get(name, code => {
+                code = code.replace(/display:-webkit-box;display:-webkit-flex;/gm, '');
                 code = code.slice(0, code.indexOf("\n"));
                 if (code.indexOf("setCssToHead") > -1) runList[name] = code.slice(code.indexOf("setCssToHead"));
             });
@@ -252,7 +253,7 @@ function doWxss(dir, cb) {
             frameFile = path.resolve(dir, "page-frame.js");
         else throw Error("page-frame-like file is not found in the package by auto.");
         wu.get(frameFile, code => {
-
+            code = code.replace(/display:-webkit-box;display:-webkit-flex;/gm, '');
             let scriptCode = code;
             //extract script content from html
             if (frameFile.endsWith(".html")) {
