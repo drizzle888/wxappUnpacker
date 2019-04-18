@@ -379,7 +379,7 @@ function doFrame(name, cb, order, mainDir) {
     wu.get(name, code => {
         getZ(code, z => {
             const before = "\nvar nv_require=function(){var nnm=";
-            code = code.slice(code.indexOf(before) + before.length, code.lastIndexOf("if(path&&e_[path]){"));
+            code = code.slice(code.lastIndexOf(before) + before.length, code.lastIndexOf("if(path&&e_[path]){"));
             json = code.slice(0, code.indexOf("};") + 1);
             let endOfRequire = code.indexOf("()\r\n") + 4;
             if (endOfRequire == 4 - 1) endOfRequire = code.indexOf("()\n") + 3;

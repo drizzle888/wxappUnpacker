@@ -9,7 +9,7 @@ function jsBeautify(code) {
 }
 
 function splitJs(name, cb, mainDir) {
-    let dir = mainDir || path.dirname(name);
+    let dir = (mainDir && mainDir.length > 0) || path.dirname(name);
     wu.get(name, code => {
         let needDelList = {};
         let vm = new VM({
@@ -29,10 +29,15 @@ function splitJs(name, cb, mainDir) {
                     }
                     needDelList[path.resolve(dir, name)] = -8;
                     wu.save(path.resolve(dir, name), jsBeautify(res));
+                },
+                definePlugin() {
+                },
+                requirePlugin() {
                 }
             }
         });
-        vm.run(code.slice(code.indexOf("define(")));
+        //code.slice(code.indexOf("define("));
+        vm.run(code);
         console.log("Splitting \"" + name + "\" done.");
         if (!needDelList[name]) needDelList[name] = 8;
         cb(needDelList);

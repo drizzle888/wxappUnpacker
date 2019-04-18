@@ -161,10 +161,13 @@ function doWxss(dir, cb) {
                 setCssToHead: cssRebuild.bind(handle)
             })
         });
+
         vm.run(code);
-        for (let name in wxAppCode) if (name.endsWith(".wxss")) {
-            handle.cssFile = path.resolve(frameName, "..", name);
-            wxAppCode[name]();
+        for (let name in wxAppCode) {
+            if (name.endsWith(".wxss")) {
+                handle.cssFile = path.resolve(frameName, "..", name);
+                wxAppCode[name]();
+            }
         }
     }
 
@@ -175,7 +178,10 @@ function doWxss(dir, cb) {
             wu.get(name, code => {
                 code = code.replace(/display:-webkit-box;display:-webkit-flex;/gm, '');
                 code = code.slice(0, code.indexOf("\n"));
-                if (code.indexOf("setCssToHead") > -1) runList[name] = code.slice(code.indexOf("setCssToHead"));
+                if (code.indexOf("setCssToHead(") > -1) {
+                    let realCode = code.slice(code.indexOf("setCssToHead("));
+                    runList[name] = realCode;
+                }
             });
         }
     }
@@ -280,10 +286,11 @@ function doWxss(dir, cb) {
                 userAgent: "iPhone"
             };
 
-
+            scriptCode = scriptCode.slice(scriptCode.lastIndexOf('window.__wcc_version__'));
+            console.log(scriptCode.substr(0, 200));
             let mainCode = 'window= ' + JSON.stringify(window) +
                 ';\nnavigator=' + JSON.stringify(navigator) +
-                //";\ndocument=" + document +
+                ';\nvar __WXML_GLOBAL__={entrys:{},defines:{},modules:{},ops:[],wxs_nf_init:undefined,total_ops:0}' +
                 ";\n" + scriptCode;
 
             //remove setCssToHead function
@@ -293,13 +300,13 @@ function doWxss(dir, cb) {
             mainCode = mainCode.substr(0, setCssToHeadFuctionStartIndex) + mainCode.substr(setCssToHeadFunctionEndIndexes.end + 1);
 
             //remove var __wxAppCode__ = {};
-            let wxAppCodeVarDeclare = "var __wxAppCode__={};";
-            let wxAppCodeVarDeclareIndex = mainCode.indexOf(wxAppCodeVarDeclare);
-            let wxAppCodeVarDeclareEnd = wxAppCodeVarDeclareIndex + wxAppCodeVarDeclare.length;
-            mainCode = mainCode.substr(0, wxAppCodeVarDeclareIndex) + mainCode.substr(wxAppCodeVarDeclareEnd);
+            // let wxAppCodeVarDeclare = "var __wxAppCode__={};";
+            // let wxAppCodeVarDeclareIndex = mainCode.indexOf(wxAppCodeVarDeclare);
+            // let wxAppCodeVarDeclareEnd = wxAppCodeVarDeclareIndex + wxAppCodeVarDeclare.length;
+            // mainCode = mainCode.substr(0, wxAppCodeVarDeclareIndex) + mainCode.substr(wxAppCodeVarDeclareEnd);
 
-            code = code.slice(code.indexOf('var setCssToHead = function(file, _xcInvalid'));
-            code = code.slice(code.indexOf('\nvar _C= ') + 1);
+            code = code.slice(code.lastIndexOf('var setCssToHead = function(file, _xcInvalid'));
+            code = code.slice(code.lastIndexOf('\nvar _C= ') + 1);
             //let oriCode=code;
             code = code.slice(0, code.indexOf('\n'));
             let vm = new VM({sandbox: {}});
