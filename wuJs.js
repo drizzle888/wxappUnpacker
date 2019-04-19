@@ -45,7 +45,6 @@ function splitJs(name, cb, mainDir) {
             code = code.slice(code.indexOf("define("));
         }
         console.log('splitJs: ' + name);
-        console.log(code.substr(0, 100));
         vm.run(code);
         console.log("Splitting \"" + name + "\" done.");
         if (!needDelList[name]) needDelList[name] = 8;
