@@ -162,6 +162,7 @@ function doWxss(dir, cb) {
             })
         });
 
+        console.log('runVm: ' + name);
         vm.run(code);
         for (let name in wxAppCode) {
             if (name.endsWith(".wxss")) {
@@ -290,7 +291,7 @@ function doWxss(dir, cb) {
             console.log(scriptCode.substr(0, 200));
             let mainCode = 'window= ' + JSON.stringify(window) +
                 ';\nnavigator=' + JSON.stringify(navigator) +
-                ';\nvar __WXML_GLOBAL__={entrys:{},defines:{},modules:{},ops:[],wxs_nf_init:undefined,total_ops:0}' +
+                ';\nvar __mainPageFrameReady__ = window.__mainPageFrameReady__ || function(){};var __WXML_GLOBAL__={entrys:{},defines:{},modules:{},ops:[],wxs_nf_init:undefined,total_ops:0}' +
                 ";\n" + scriptCode;
 
             //remove setCssToHead function
