@@ -41,6 +41,10 @@ function doConfig(configFile, cb) {
                 if (lastChar !== '/') {
                     root = root + '/';
                 }
+                let firstChar = root.substr(0, 1);
+                if (firstChar === '/') {
+                    root = root.substring(1);
+                }
                 let newPages = [];
                 for (let page of subPackage.pages) {
                     let items = page.replace(root, '');

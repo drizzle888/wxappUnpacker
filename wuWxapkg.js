@@ -38,7 +38,6 @@ function genList(buf) {
         info.size = buf.readUInt32BE(off);
         off += 4;
         fileInfo.push(info);
-        console.log(info);
     }
     return fileInfo;
 }
