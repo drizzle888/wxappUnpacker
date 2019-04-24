@@ -95,6 +95,7 @@ function packDone(dir, cb, order) {
                 wuMl.doFrame(path.resolve(dir, "page-frame.js"), doBack, order, mainDir);
                 console.log('deal sub html ok');
             }
+            wuSs.doWxss(dir, doBack, mainDir);
         } else {
             if (fs.existsSync(path.resolve(dir, "page-frame.html"))) {
                 wuMl.doFrame(path.resolve(dir, "page-frame.html"), doBack, order, mainDir);
@@ -108,7 +109,8 @@ function packDone(dir, cb, order) {
             } else {
                 throw Error("page-frame-like file is not found in the package by auto.");
             }
-            wuSs.doWxss(dir, doBack, mainDir);//Force it run at last, becuase lots of error occured in this part
+            //Force it run at last, becuase lots of error occured in this part
+            wuSs.doWxss(dir, doBack, mainDir);
 
             console.log('deal css ok');
         }

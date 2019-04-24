@@ -83,7 +83,12 @@ function chomp_balanced(input_str, scan_start, open_char, close_char) {
     return undefined;
 }
 
-function doWxss(dir, cb) {
+function doWxss(dir, cb, mainDir) {
+    let saveDir = dir;
+    let isSubPkg = mainDir && mainDir.length > 0;
+    if (isSubPkg) {
+        saveDir = mainDir
+    }
     function GwxCfg() {
     }
 
@@ -158,15 +163,18 @@ function doWxss(dir, cb) {
         let vm = new VM({
             sandbox: Object.assign(new GwxCfg(), {
                 __wxAppCode__: wxAppCode,
-                setCssToHead: cssRebuild.bind(handle)
+                setCssToHead: cssRebuild.bind(handle),
+                $gwx(path, global) {
+
+                }
             })
         });
 
-        console.log('runVm: ' + name);
+        console.log('do css runVm: ' + name);
         vm.run(code);
         for (let name in wxAppCode) {
             if (name.endsWith(".wxss")) {
-                handle.cssFile = path.resolve(frameName, "..", name);
+                handle.cssFile = path.resolve(saveDir, name);
                 wxAppCode[name]();
             }
         }
@@ -181,6 +189,7 @@ function doWxss(dir, cb) {
                 code = code.slice(0, code.indexOf("\n"));
                 if (code.indexOf("setCssToHead(") > -1) {
                     let realCode = code.slice(code.indexOf("setCssToHead("));
+
                     runList[name] = realCode;
                 }
             });
@@ -288,7 +297,6 @@ function doWxss(dir, cb) {
             };
 
             scriptCode = scriptCode.slice(scriptCode.lastIndexOf('window.__wcc_version__'));
-            console.log(scriptCode.substr(0, 200));
             let mainCode = 'window= ' + JSON.stringify(window) +
                 ';\nnavigator=' + JSON.stringify(navigator) +
                 ';\nvar __mainPageFrameReady__ = window.__mainPageFrameReady__ || function(){};var __WXML_GLOBAL__={entrys:{},defines:{},modules:{},ops:[],wxs_nf_init:undefined,total_ops:0};var __vd_version_info__=__vd_version_info__||{}' +
@@ -335,7 +343,11 @@ function doWxss(dir, cb) {
                 console.log("Guess wxss(first turn) done.\nGenerate wxss(second turn)...");
                 runOnce()
                 console.log("Generate wxss(second turn) done.\nSave wxss...");
-                for (let name in result) wu.save(wu.changeExt(name, ".wxss"), transformCss(result[name]));
+
+                console.log(saveDir);
+                for (let name in result) {
+                    wu.save(path.resolve(saveDir, wu.changeExt(name, ".wxss")), transformCss(result[name]));
+                }
                 let delFiles = {};
                 for (let name of files) delFiles[name] = 8;
                 delFiles[frameFile] = 4;
