@@ -72,7 +72,7 @@ function packDone(dir, cb, order) {
         weappEvent.decount();
     }
 
-    function dealThreeThings(dir, mainDir) {
+    function dealThreeThings(dir, mainDir, nowDir) {
         console.log("Split app-service.js and make up configs & wxss & wxml & wxs...");
 
         //deal config
@@ -95,7 +95,7 @@ function packDone(dir, cb, order) {
                 wuMl.doFrame(path.resolve(dir, "page-frame.js"), doBack, order, mainDir);
                 console.log('deal sub html ok');
             }
-            wuSs.doWxss(dir, doBack, mainDir);
+            wuSs.doWxss(dir, doBack, mainDir, nowDir);
         } else {
             if (fs.existsSync(path.resolve(dir, "page-frame.html"))) {
                 wuMl.doFrame(path.resolve(dir, "page-frame.html"), doBack, order, mainDir);
@@ -110,7 +110,7 @@ function packDone(dir, cb, order) {
                 throw Error("page-frame-like file is not found in the package by auto.");
             }
             //Force it run at last, becuase lots of error occured in this part
-            wuSs.doWxss(dir, doBack, mainDir);
+            wuSs.doWxss(dir, doBack);
 
             console.log('deal css ok');
         }
@@ -158,7 +158,7 @@ function packDone(dir, cb, order) {
                             console.log("sub package word dir: " + workDir);
                             mainDir = path.resolve(oldDir, mainDir);
                             console.log("real mainDir: " + mainDir);
-                            dealThreeThings(workDir, mainDir);
+                            dealThreeThings(workDir, mainDir, oldDir);
                             doSubPkg = true;
                             return true;
                         } else {
