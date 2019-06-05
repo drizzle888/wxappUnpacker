@@ -8,8 +8,12 @@ function jsBeautify(code) {
     return UglifyJS.minify(code, {mangle: false, compress: false, output: {beautify: true, comments: true}}).code;
 }
 
-function splitJs(name, cb) {
+function splitJs(name, cb, mainDir) {
+    let isSubPkg = mainDir && mainDir.length > 0;
     let dir = path.dirname(name);
+    if (isSubPkg) {
+        dir = mainDir;
+    }
     wu.get(name, code => {
         let needDelList = {};
         let vm = new VM({
@@ -27,12 +31,21 @@ function splitJs(name, cb) {
                         console.log("Fail to delete 'use strict' in \"" + name + "\".");
                         res = jsBeautify(bcode);
                     }
+                    console.log(dir, name);
                     needDelList[path.resolve(dir, name)] = -8;
                     wu.save(path.resolve(dir, name), jsBeautify(res));
+                },
+                definePlugin() {
+                },
+                requirePlugin() {
                 }
             }
         });
-        vm.run(code.slice(code.indexOf("define(")));
+        if (isSubPkg) {
+            code = code.slice(code.indexOf("define("));
+        }
+        console.log('splitJs: ' + name);
+        vm.run(code);
         console.log("Splitting \"" + name + "\" done.");
         if (!needDelList[name]) needDelList[name] = 8;
         cb(needDelList);

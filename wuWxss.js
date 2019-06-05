@@ -83,7 +83,12 @@ function chomp_balanced(input_str, scan_start, open_char, close_char) {
     return undefined;
 }
 
-function doWxss(dir, cb) {
+function doWxss(dir, cb, mainDir, nowDir) {
+    let saveDir = dir;
+    let isSubPkg = mainDir && mainDir.length > 0;
+    if (isSubPkg) {
+        saveDir = mainDir
+    }
     function GwxCfg() {
     }
 
@@ -158,24 +163,42 @@ function doWxss(dir, cb) {
         let vm = new VM({
             sandbox: Object.assign(new GwxCfg(), {
                 __wxAppCode__: wxAppCode,
-                setCssToHead: cssRebuild.bind(handle)
+                setCssToHead: cssRebuild.bind(handle),
+                $gwx(path, global) {
+
+                }
             })
         });
+
+        // console.log('do css runVm: ' + name);
         vm.run(code);
-        for (let name in wxAppCode) if (name.endsWith(".wxss")) {
-            handle.cssFile = path.resolve(frameName, "..", name);
-            wxAppCode[name]();
+        for (let name in wxAppCode) {
+            handle.cssFile = path.resolve(saveDir, name);
+            if (name.endsWith(".wxss")) {
+                wxAppCode[name]();
+            }
         }
     }
 
     function preRun(dir, frameFile, mainCode, files, cb) {
         wu.addIO(cb);
         runList[path.resolve(dir, "./app.wxss")] = mainCode;
-        for (let name of files) if (name != frameFile) {
-            wu.get(name, code => {
-                code = code.slice(0, code.indexOf("\n"));
-                if (code.indexOf("setCssToHead") > -1) runList[name] = code.slice(code.indexOf("setCssToHead"));
-            });
+
+        for (let name of files) {
+            if (name != frameFile) {
+                wu.get(name, code => {
+                    code = code.replace(/display:-webkit-box;display:-webkit-flex;/gm, '');
+                    code = code.slice(0, code.indexOf("\n"));
+                    if (code.indexOf("setCssToHead(") > -1) {
+                        let lastName = name;
+                        let dirSplit = name.split(nowDir + '/');
+                        if (dirSplit.length > 1) {
+                            lastName = path.resolve(saveDir, dirSplit[1]);
+                        }
+                        runList[lastName] = code.slice(code.indexOf("setCssToHead("));
+                    }
+                });
+            }
         }
     }
 
@@ -252,7 +275,7 @@ function doWxss(dir, cb) {
             frameFile = path.resolve(dir, "page-frame.js");
         else throw Error("page-frame-like file is not found in the package by auto.");
         wu.get(frameFile, code => {
-
+            code = code.replace(/display:-webkit-box;display:-webkit-flex;/gm, '');
             let scriptCode = code;
             //extract script content from html
             if (frameFile.endsWith(".html")) {
@@ -279,10 +302,10 @@ function doWxss(dir, cb) {
                 userAgent: "iPhone"
             };
 
-
+            scriptCode = scriptCode.slice(scriptCode.lastIndexOf('window.__wcc_version__'));
             let mainCode = 'window= ' + JSON.stringify(window) +
                 ';\nnavigator=' + JSON.stringify(navigator) +
-                //";\ndocument=" + document +
+                ';\nvar __mainPageFrameReady__ = window.__mainPageFrameReady__ || function(){};var __WXML_GLOBAL__={entrys:{},defines:{},modules:{},ops:[],wxs_nf_init:undefined,total_ops:0};var __vd_version_info__=__vd_version_info__||{}' +
                 ";\n" + scriptCode;
 
             //remove setCssToHead function
@@ -292,13 +315,13 @@ function doWxss(dir, cb) {
             mainCode = mainCode.substr(0, setCssToHeadFuctionStartIndex) + mainCode.substr(setCssToHeadFunctionEndIndexes.end + 1);
 
             //remove var __wxAppCode__ = {};
-            let wxAppCodeVarDeclare = "var __wxAppCode__={};";
-            let wxAppCodeVarDeclareIndex = mainCode.indexOf(wxAppCodeVarDeclare);
-            let wxAppCodeVarDeclareEnd = wxAppCodeVarDeclareIndex + wxAppCodeVarDeclare.length;
-            mainCode = mainCode.substr(0, wxAppCodeVarDeclareIndex) + mainCode.substr(wxAppCodeVarDeclareEnd);
+            // let wxAppCodeVarDeclare = "var __wxAppCode__={};";
+            // let wxAppCodeVarDeclareIndex = mainCode.indexOf(wxAppCodeVarDeclare);
+            // let wxAppCodeVarDeclareEnd = wxAppCodeVarDeclareIndex + wxAppCodeVarDeclare.length;
+            // mainCode = mainCode.substr(0, wxAppCodeVarDeclareIndex) + mainCode.substr(wxAppCodeVarDeclareEnd);
 
-            code = code.slice(code.indexOf('var setCssToHead = function(file, _xcInvalid'));
-            code = code.slice(code.indexOf('\nvar _C= ') + 1);
+            code = code.slice(code.lastIndexOf('var setCssToHead = function(file, _xcInvalid'));
+            code = code.slice(code.lastIndexOf('\nvar _C= ') + 1);
             //let oriCode=code;
             code = code.slice(0, code.indexOf('\n'));
             let vm = new VM({sandbox: {}});
@@ -326,7 +349,12 @@ function doWxss(dir, cb) {
                 console.log("Guess wxss(first turn) done.\nGenerate wxss(second turn)...");
                 runOnce()
                 console.log("Generate wxss(second turn) done.\nSave wxss...");
-                for (let name in result) wu.save(wu.changeExt(name, ".wxss"), transformCss(result[name]));
+
+                console.log('saveDir: ' + saveDir);
+                for (let name in result) {
+                    let pathFile = path.resolve(saveDir, wu.changeExt(name, ".wxss"));
+                    wu.save(pathFile, transformCss(result[name]));
+                }
                 let delFiles = {};
                 for (let name of files) delFiles[name] = 8;
                 delFiles[frameFile] = 4;

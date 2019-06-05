@@ -373,18 +373,18 @@ function doWxs(code) {
     return wxsBeautify(code.slice(code.indexOf(before) + before.length, code.lastIndexOf('return nv_module.nv_exports;}')).replace(/nv\_/g, ''));
 }
 
-function doFrame(name, cb, order) {
+function doFrame(name, cb, order, mainDir) {
     let moreInfo = order.includes("m");
     wxsList = {};
     wu.get(name, code => {
         getZ(code, z => {
             const before = "\nvar nv_require=function(){var nnm=";
-            code = code.slice(code.indexOf(before) + before.length, code.lastIndexOf("if(path&&e_[path]){"));
+            code = code.slice(code.lastIndexOf(before) + before.length, code.lastIndexOf("if(path&&e_[path]){"));
             json = code.slice(0, code.indexOf("};") + 1);
             let endOfRequire = code.indexOf("()\r\n") + 4;
             if (endOfRequire == 4 - 1) endOfRequire = code.indexOf("()\n") + 3;
             code = code.slice(endOfRequire);
-            let rD = {}, rE = {}, rF = {}, requireInfo, x, vm = new VM({
+            let rD = {}, rE = {}, rF = {}, requireInfo = {}, x, vm = new VM({
                 sandbox: {
                     d_: rD, e_: rE, f_: rF, _vmRev_(data) {
                         [x, requireInfo] = data;
@@ -393,8 +393,9 @@ function doFrame(name, cb, order) {
                     }
                 }
             });
-            vm.run(code + "\n_vmRev_([x," + json + "])");
-            let dir = path.dirname(name), pF = [];
+            let vmCode = code + "\n_vmRev_([x," + json + "])";
+            vm.run(vmCode);
+            let dir = mainDir || path.dirname(name), pF = [];
             for (let info in rF) if (typeof rF[info] == "function") {
                 let name = path.resolve(dir, (info[0] == '/' ? '.' : '') + info), ref = rF[info]();
                 pF[ref] = info;
